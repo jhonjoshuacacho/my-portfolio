@@ -2,73 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to My Website</title>
+    <title>Jhon Joshua Cacho - Portfolio</title>
     <style>
-        /* Reset basic spacing to ensure it stretches edge-to-edge */
+        /* --- General Reset & Base Styles --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Base body style for the dark theme */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b1120; /* Dark navy background */
-            color: white; /* Makes standard text white so it's readable */
+            background-color: #0b1120; /* Dark background */
+            color: white; 
         }
 
-        /* The main navigation bar container */
+        /* --- Navigation Bar Styles --- */
         .navbar {
             display: flex;
-            justify-content: space-between; /* Pushes logo left and links right */
-            align-items: center; /* Centers items vertically */
-            padding: 20px 40px; /* Top/bottom and left/right spacing */
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
             background-color: #0b1120;
-            border-bottom: 1px solid #1e293b; /* Optional: adds a subtle line under the nav */
+            border-bottom: 1px solid #1e293b; 
         }
 
-        /* Groups the circle and your name together */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px; /* Space between the circle and text */
+            gap: 12px; 
         }
 
-        /* The gradient circle */
         .logo-icon {
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            /* Creates the bright cyan to deep blue effect */
             background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); 
         }
 
-        /* Your name's styling */
         .logo-text {
             font-weight: bold;
             font-size: 1.25rem;
             letter-spacing: 0.5px;
         }
 
-        /* The container for the right-side links */
         .nav-links {
-            list-style: none; /* Removes the bullet points */
+            list-style: none; 
             display: flex;
-            gap: 30px; /* Spacing between each word */
+            gap: 30px; 
         }
 
-        /* The links themselves */
         .nav-links li a {
-            text-decoration: none; /* Removes the underline */
-            color: #94a3b8; /* Slate gray color */
+            text-decoration: none; 
+            color: #94a3b8; 
             font-size: 1rem;
-            transition: color 0.3s ease; /* Smooth fade when hovering */
+            transition: color 0.3s ease; 
         }
 
-        /* Hover effect for the links */
         .nav-links li a:hover {
-            color: white; /* Turns white when you hover over it */
+            color: white; 
+        }
+
+        /* --- Hero Section Styles (NEW) --- */
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto; /* Centers the whole section on the page */
+            gap: 60px; /* Space between the text and the image */
+        }
+
+        /* Left Side: Text Content */
+        .hero-content {
+            flex: 1; /* Takes up equal space */
+        }
+
+        .hero-headline {
+            font-size: 2.2rem;
+            line-height: 1.4;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .hero-roles {
+            color: #94a3b8; /* Slate gray color */
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Right Side: Image and Name */
+        .hero-profile {
+            flex: 1; /* Takes up equal space */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 450px; /* Prevents the image from getting too massive */
+        }
+
+        .profile-img {
+            width: 100%; /* Fills the container */
+            height: auto;
+            border-radius: 4px; /* Very slight rounding on the image corners */
+            margin-bottom: 20px;
+        }
+
+        .greeting-small {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+        }
+
+        .greeting-name {
+            font-size: 2rem;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -88,10 +136,25 @@
     </nav>
     <!-- Navigation Bar Ends Here -->
 
-    <!-- I added some styling to these so they look good on the dark background! -->
-    <div style="padding: 40px;">
-        <h1>Hello, World!</h1>
-        <p style="color: #94a3b8; margin-top: 10px;">Welcome to my brand new portfolio hosted on GitHub Pages.</p>
-    </div>
+    <!-- Hero Section Starts Here -->
+    <section class="hero-section">
+        
+        <!-- Left Side: Text Content -->
+        <div class="hero-content">
+            <h1 class="hero-headline">I take care of the heavy lifting so you can breathe easier. Let me handle your quotations, manage your revenue tracking, and run your daily office admin while you win back your peace of mind.</h1>
+            <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
+        </div>
+
+        <!-- Right Side: Profile Image and Name -->
+        <div class="hero-profile">
+            <!-- Ensure 'src' matches your uploaded image filename exactly -->
+            <img src="profile.jpeg" alt="Jhon Joshua Cacho Portrait" class="profile-img">
+            <span class="greeting-small">Hi I'm</span>
+            <h2 class="greeting-name">Jhon Joshua Cacho</h2>
+        </div>
+
+    </section>
+    <!-- Hero Section Ends Here -->
+
 </body>
 </html>
