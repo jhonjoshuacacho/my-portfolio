@@ -3,6 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to My Website</title>
+    <style>
+        /* Reset basic spacing to ensure it stretches edge-to-edge */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base body style for the dark theme */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b1120; /* Dark navy background */
+            color: white; /* Makes standard text white so it's readable */
+        }
+
+        /* The main navigation bar container */
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Pushes logo left and links right */
+            align-items: center; /* Centers items vertically */
+            padding: 20px 40px; /* Top/bottom and left/right spacing */
+            background-color: #0b1120;
+            border-bottom: 1px solid #1e293b; /* Optional: adds a subtle line under the nav */
+        }
+
+        /* Groups the circle and your name together */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Space between the circle and text */
+        }
+
+        /* The gradient circle */
+        .logo-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            /* Creates the bright cyan to deep blue effect */
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); 
+        }
+
+        /* Your name's styling */
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* The container for the right-side links */
+        .nav-links {
+            list-style: none; /* Removes the bullet points */
+            display: flex;
+            gap: 30px; /* Spacing between each word */
+        }
+
+        /* The links themselves */
+        .nav-links li a {
+            text-decoration: none; /* Removes the underline */
+            color: #94a3b8; /* Slate gray color */
+            font-size: 1rem;
+            transition: color 0.3s ease; /* Smooth fade when hovering */
+        }
+
+        /* Hover effect for the links */
+        .nav-links li a:hover {
+            color: white; /* Turns white when you hover over it */
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar Starts Here -->
@@ -20,7 +88,10 @@
     </nav>
     <!-- Navigation Bar Ends Here -->
 
-    <h1>Hello, World!</h1>
-    <p>Welcome to my brand new portfolio hosted on GitHub Pages.</p>
+    <!-- I added some styling to these so they look good on the dark background! -->
+    <div style="padding: 40px;">
+        <h1>Hello, World!</h1>
+        <p style="color: #94a3b8; margin-top: 10px;">Welcome to my brand new portfolio hosted on GitHub Pages.</p>
+    </div>
 </body>
 </html>
