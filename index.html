@@ -2,130 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jhon Joshua Cacho - Portfolio</title>
+    <title>Josh Cacho - Portfolio</title>
     <style>
-        /* --- General Reset & Base Styles --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0b1120; color: white; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b1120; /* Dark background */
-            color: white; 
-        }
+        /* Navbar remains the same */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #0b1120; border-bottom: 1px solid #1e293b; }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links li a { text-decoration: none; color: #94a3b8; }
 
-        /* --- Navigation Bar Styles --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 20px 40px; 
-            background-color: #0b1120;
-            border-bottom: 1px solid #1e293b; 
-        }
+        /* Hero Section Updated for image_2e000c.jpg */
+        .hero-section { display: flex; align-items: flex-start; padding: 80px 40px; max-width: 1200px; margin: 0 auto; gap: 60px; }
+        
+        .hero-content { flex: 1; }
+        .hero-name { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero-title { font-size: 1.2rem; color: #94a3b8; margin-bottom: 25px; letter-spacing: 1px; }
+        .hero-desc { font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
+        .hero-roles { color: #94a3b8; font-size: 0.9rem; margin-bottom: 30px; }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px; 
-        }
-
-        .logo-icon {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); 
-        }
-
-        .logo-text {
+        .btn-work {
+            background-color: #334155;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
             font-weight: bold;
-            font-size: 1.25rem;
-            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
+        .btn-work:hover { background-color: #475569; }
 
-        .nav-links {
-            list-style: none; 
-            display: flex;
-            gap: 30px; 
-        }
-
-        .nav-links li a {
-            text-decoration: none; 
-            color: #94a3b8; 
-            font-size: 1rem;
-            transition: color 0.3s ease; 
-        }
-
-        .nav-links li a:hover {
-            color: white; 
-        }
-
-        /* --- Hero Section Styles (NEW) --- */
-        .hero-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: 0 auto; /* Centers the whole section on the page */
-            gap: 60px; /* Space between the text and the image */
-        }
-
-        /* Left Side: Text Content */
-        .hero-content {
-            flex: 1; /* Takes up equal space */
-        }
-
-        .hero-headline {
-            font-size: 2.2rem;
-            line-height: 1.4;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .hero-roles {
-            color: #94a3b8; /* Slate gray color */
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        /* Right Side: Image and Name */
-        .hero-profile {
-            flex: 1; /* Takes up equal space */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            max-width: 450px; /* Prevents the image from getting too massive */
-        }
-
-        .profile-img {
-            width: 100%; /* Fills the container */
-            height: auto;
-            border-radius: 4px; /* Very slight rounding on the image corners */
-            margin-bottom: 20px;
-        }
-
-        .greeting-small {
-            font-size: 1.1rem;
-            color: #e2e8f0;
-            margin-bottom: 5px;
-        }
-
-        .greeting-name {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+        .hero-profile { flex: 0 0 450px; display: flex; flex-direction: column; align-items: center; }
+        .profile-img { width: 100%; border-radius: 8px; }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar Starts Here -->
     <nav class="navbar">
         <div class="logo-container">
             <div class="logo-icon"></div>
-            <span class="logo-text">Jhon Joshua Cacho</span>
+            <span style="font-weight:bold;">Jhon Joshua Cacho</span>
         </div>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
@@ -134,27 +52,21 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <!-- Navigation Bar Ends Here -->
 
-    <!-- Hero Section Starts Here -->
     <section class="hero-section">
-        
-        <!-- Left Side: Text Content -->
         <div class="hero-content">
-            <h1 class="hero-headline">I take care of the heavy lifting so you can breathe easier. Let me handle your quotations, manage your revenue tracking, and run your daily office admin while you win back your peace of mind.</h1>
+            <h1 class="hero-name">Josh Cacho</h1>
+            <p class="hero-title">ADMINISTRATIVE PROFESSIONAL</p>
+            <p class="hero-desc">I take care of the heavy lifting so you can breathe easier. Let me handle your quotations, manage your revenue tracking, and run your daily office admin while you win back your peace of mind.</p>
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
+            
+            <!-- Clickable Button -->
+            <button class="btn-work" onclick="window.location.href='#contact'">Let's work together</button>
         </div>
 
-        <!-- Right Side: Profile Image and Name -->
         <div class="hero-profile">
-            <!-- Ensure 'src' matches your uploaded image filename exactly -->
-            <img src="profile.jpeg" alt="Jhon Joshua Cacho Portrait" class="profile-img">
-            <span class="greeting-small">Hi I'm</span>
-            <h2 class="greeting-name">Jhon Joshua Cacho</h2>
+            <img src="profile.jpeg" alt="Josh Cacho" class="profile-img">
         </div>
-
     </section>
-    <!-- Hero Section Ends Here -->
-
 </body>
 </html>
