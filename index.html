@@ -2,58 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Importing the "Outfit" font to achieve the light, modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; } /* Enables smooth scrolling for nav links */
         body { font-family: 'Segoe UI', sans-serif; background-color: #0b1120; color: white; }
 
         /* Navbar Styles */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #0b1120; border-bottom: 1px solid #1e293b; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #0b1120; border-bottom: 1px solid #1e293b; position: sticky; top: 0; z-index: 100; }
         .logo-container { display: flex; align-items: center; gap: 12px; }
         .logo-icon { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links li a { text-decoration: none; color: #94a3b8; }
+        .nav-links li a { text-decoration: none; color: #94a3b8; transition: color 0.3s; }
+        .nav-links li a:hover { color: #ffffff; }
 
         /* Hero Section Styles */
-        .hero-section { display: flex; align-items: flex-start; padding: 80px 40px; max-width: 1200px; margin: 0 auto; gap: 60px; }
-        
+        .hero-section { display: flex; align-items: center; padding: 80px 40px; max-width: 1200px; margin: 0 auto; gap: 60px; min-height: 80vh; }
         .hero-content { flex: 1; }
-        
-        /* Updated Josh Cacho Name Styling */
-        .hero-name { 
-            font-family: 'Outfit', sans-serif; 
-            font-weight: 300; /* Makes the font light */
-            font-size: 6rem; /* Increased size */
-            margin-bottom: 10px; 
-        }
-        
-        .hero-title { font-size: 2rem; color: #94a3b8; margin-bottom: 25px; letter-spacing: 1px; }
-        .hero-desc { font-size: 1.5rem; line-height: 1.6; margin-bottom: 25px; }
-        .hero-roles { color: #94a3b8; font-size: 1rem; margin-bottom: 30px; }
+        .hero-name { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 6rem; margin-bottom: 10px; line-height: 1.1; }
+        .hero-title { font-size: 1.5rem; color: #94a3b8; margin-bottom: 25px; letter-spacing: 1px; }
+        .hero-desc { font-size: 1.25rem; line-height: 1.6; margin-bottom: 25px; color: #cbd5e1; }
+        .hero-roles { color: #94a3b8; font-size: 1rem; margin-bottom: 30px; font-weight: 500; }
 
-        .btn-work {
-            background-color: #334155;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-work:hover { background-color: #475569; }
+        .btn-work { background-color: #334155; color: white; padding: 12px 30px; border: none; border-radius: 25px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+        .btn-work:hover { background-color: #475569; transform: translateY(-2px); }
 
-        .hero-profile { flex: 0 0 450px; display: flex; flex-direction: column; align-items: center; }
-        .profile-img { width: 100%; border-radius: 8px; }
+        .hero-profile { flex: 0 0 400px; display: flex; flex-direction: column; align-items: center; }
+        .profile-img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        /* Services Section Styles */
+        .services-section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 10px; font-weight: 400; }
+        .section-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 50px; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .service-card { 
+            background-color: transparent; 
+            border: 1px solid #334155; 
+            border-radius: 16px; 
+            padding: 35px 25px; 
+            text-align: left; 
+            display: flex; 
+            flex-direction: column;
+            transition: border-color 0.3s;
+        }
+        .service-card:hover { border-color: #64748b; }
+        
+        .card-title { font-size: 1.4rem; margin-bottom: 20px; font-weight: 400; color: #f8fafc; }
+        .card-desc { color: #94a3b8; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; font-size: 0.95rem; }
+        
+        .card-divider { border-top: 1px solid #1e293b; margin-bottom: 25px; }
+        
+        .pill { 
+            border: 1px solid #334155; 
+            border-radius: 25px; 
+            padding: 10px 15px; 
+            margin-bottom: 12px; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            color: #cbd5e1;
+            background-color: transparent;
+            transition: background 0.3s, color 0.3s;
+        }
+        .pill:hover { background-color: rgba(255, 255, 255, 0.05); color: #ffffff; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .hero-section { flex-direction: column-reverse; text-align: center; padding: 60px 20px; gap: 40px; }
+            .hero-profile { flex: auto; width: 100%; max-width: 350px; }
+            .hero-name { font-size: 4rem; }
+            .hero-title { font-size: 1.25rem; }
+            .nav-links { display: none; }
+            
+            .services-grid { grid-template-columns: 1fr; } /* Stacks cards on mobile */
+            .services-section { padding: 60px 20px; }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
             <div class="logo-icon"></div>
-            <span style="font-weight:bold;">Jhon Joshua Cacho</span>
+            <span style="font-weight:bold; letter-spacing: 0.5px;">Jhon Joshua Cacho</span>
         </div>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
@@ -67,15 +100,48 @@
         <div class="hero-content">
             <h1 class="hero-name">Josh Cacho</h1>
             <p class="hero-title">ADMINISTRATIVE PROFESSIONAL</p>
-            <p class="hero-desc">I take care of the heavy lifting so you can breathe easier. Let me handle your quotations, manage your revenue tracking, and run your daily office admin while you win back your peace of mind.</p>
+            <p class="hero-desc">I take care of the heavy lifting so you can breathe easier. With a strong focus on problem-solving, I streamline your quotations, manage revenue tracking, and run your daily office admin—so you can win back your time and peace of mind.</p>
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
             
             <button class="btn-work" onclick="window.location.href='#contact'">Let's work together</button>
         </div>
 
         <div class="hero-profile">
-            <!-- Ensure src matches your actual uploaded filename -->
-            <img src="profile.jpeg" alt="Josh Cacho" class="profile-img">
+            <img src="profile.jpeg" alt="Portrait of Josh Cacho" class="profile-img">
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2 class="section-title">What I do</h2>
+        <p class="section-subtitle">Seamless Support. Proven Reliability. Total Peace of Mind.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="card-title">Quotation | Invoices</h3>
+                <p class="card-desc">Professional Quotation Management: Delivering accurate pricing, detailed scopes of work, and precise SKU documentation for seamless sales operations.</p>
+                <div class="card-divider"></div>
+                <div class="pill">Resolve Cases & Inquiries</div>
+                <div class="pill">Generate & Negotiate Proposals</div>
+                <div class="pill">Document Interactions</div>
+            </div>
+
+            <div class="service-card">
+                <h3 class="card-title">Account Management</h3>
+                <p class="card-desc">Proactive | Serving as a dedicated point of contact to maintain client relationships, handle inquiries, and ensure seamless communication and operational consistency.</p>
+                <div class="card-divider"></div>
+                <div class="pill">Documentation & Negotiation</div>
+                <div class="pill">Investigate & Update</div>
+                <div class="pill">Sales & Subscriptions</div>
+            </div>
+
+            <div class="service-card">
+                <h3 class="card-title">Inside Sales</h3>
+                <p class="card-desc">Managing sales pipeline by coordinating high-value meetings, ensuring calendar efficiency, and maintaining seamless communication from initial contact to discovery.</p>
+                <div class="card-divider"></div>
+                <div class="pill">Manage Leads & Sales Pipeline</div>
+                <div class="pill">Resolved General Inquiries</div>
+                <div class="pill">Maintain Communications & Data</div>
+            </div>
         </div>
     </section>
 </body>
