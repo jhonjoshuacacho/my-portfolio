@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,7 +15,7 @@
         .logo-container { display: flex; align-items: center; gap: 12px; }
         .logo-icon { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links li a { text-decoration: none; color: #94a3b8; transition: color 0.3s; }
+        .nav-links li a { text-decoration: none; color: #94a3b8; transition: color 0.3s; font-weight: 500;}
         .nav-links li a:hover { color: #ffffff; }
 
         /* Hero Section Styles */
@@ -32,42 +32,84 @@
         .hero-profile { flex: 0 0 400px; display: flex; flex-direction: column; align-items: center; }
         .profile-img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        /* Services Section Styles */
-        .services-section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; text-align: center; }
-        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 10px; font-weight: 400; }
+        /* Common Section Styles */
+        .section-container { padding: 80px 40px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 10px; font-weight: 600; }
         .section-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 50px; }
-        
+
+        /* Services Section Styles */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        
-        .service-card { 
-            background-color: transparent; 
-            border: 1px solid #334155; 
-            border-radius: 16px; 
-            padding: 35px 25px; 
-            text-align: left; 
-            display: flex; 
-            flex-direction: column;
-            transition: border-color 0.3s;
-        }
+        .service-card { background-color: transparent; border: 1px solid #334155; border-radius: 16px; padding: 35px 25px; text-align: left; display: flex; flex-direction: column; transition: border-color 0.3s; }
         .service-card:hover { border-color: #64748b; }
-        
         .card-title { font-size: 1.4rem; margin-bottom: 20px; font-weight: 400; color: #f8fafc; }
         .card-desc { color: #94a3b8; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; font-size: 0.95rem; }
-        
         .card-divider { border-top: 1px solid #1e293b; margin-bottom: 25px; }
-        
-        .pill { 
-            border: 1px solid #334155; 
-            border-radius: 25px; 
-            padding: 10px 15px; 
-            margin-bottom: 12px; 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: #cbd5e1;
-            background-color: transparent;
-            transition: background 0.3s, color 0.3s;
-        }
+        .pill { border: 1px solid #334155; border-radius: 25px; padding: 10px 15px; margin-bottom: 12px; text-align: center; font-size: 0.85rem; color: #cbd5e1; background-color: transparent; transition: background 0.3s, color 0.3s; }
         .pill:hover { background-color: rgba(255, 255, 255, 0.05); color: #ffffff; }
+
+        /* Strategic Partnerships Section Styles */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .partner-card {
+            position: relative;
+            background-color: transparent;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Styling for the logo image */
+        .partner-logo {
+            max-width: 60%;
+            max-height: 60%;
+            object-fit: contain;
+            transition: opacity 0.4s ease;
+        }
+
+        /* The description box that pops up on hover */
+        .partner-desc {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(11, 17, 32, 0.95); /* Deep dark blue background */
+            border: 2px solid #475569;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Hover Effects */
+        .partner-card:hover .partner-desc {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .partner-card:hover .partner-logo {
+            opacity: 0.05; /* Fades the logo out into the background */
+        }
 
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
@@ -76,13 +118,17 @@
             .hero-name { font-size: 4rem; }
             .hero-title { font-size: 1.25rem; }
             .nav-links { display: none; }
-            
             .services-grid { grid-template-columns: 1fr; }
-            .services-section { padding: 60px 20px; }
+            .section-container { padding: 60px 20px; }
+            .partners-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .partners-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Updated -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
             <div class="logo-icon"></div>
@@ -90,12 +136,13 @@
         </div>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
-            <li><a href="#proof">Proof</a></li>
-            <li><a href="#tools">Tools</a></li>
+            <li><a href="#clients">Clients</a></li>
+            <li><a href="#accolades">Accolades</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-name">Josh Cacho</h1>
@@ -111,7 +158,8 @@
         </div>
     </section>
 
-    <section id="services" class="services-section">
+    <!-- Services Section -->
+    <section id="services" class="section-container">
         <h2 class="section-title">What I do</h2>
         <p class="section-subtitle">Seamless Support. Proven Reliability. Total Peace of Mind.</p>
         
@@ -171,5 +219,80 @@
             </div>
         </div>
     </section>
+
+    <!-- Strategic Partnerships Section -->
+    <section id="clients" class="section-container">
+        <h2 class="section-title">Strategic Partnerships</h2>
+        <p class="section-subtitle">Collaborations built on reliability and results.</p>
+        
+        <div class="partners-grid">
+            
+            <!-- iOPEX -->
+            <div class="partner-card">
+                <img src="iopex.png" alt="iOPEX" class="partner-logo">
+                <div class="partner-desc">
+                    Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.
+                </div>
+            </div>
+
+            <!-- SSE -->
+            <div class="partner-card">
+                <img src="sse.png" alt="SSE" class="partner-logo">
+                <div class="partner-desc">
+                    Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.
+                </div>
+            </div>
+
+            <!-- InCharge Energy -->
+            <div class="partner-card">
+                <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
+                <div class="partner-desc">
+                    Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.
+                </div>
+            </div>
+
+            <!-- Equifax -->
+            <div class="partner-card">
+                <img src="equifax.png" alt="Equifax" class="partner-logo">
+                <div class="partner-desc">
+                    Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.
+                </div>
+            </div>
+
+            <!-- Foundever -->
+            <div class="partner-card">
+                <img src="foundever.png" alt="Foundever" class="partner-logo">
+                <div class="partner-desc">
+                    Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.
+                </div>
+            </div>
+
+            <!-- Temu -->
+            <div class="partner-card">
+                <img src="temu.png" alt="Temu" class="partner-logo">
+                <div class="partner-desc">
+                    Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.
+                </div>
+            </div>
+
+            <!-- OVO Energy -->
+            <div class="partner-card">
+                <img src="ovo.png" alt="OVO Energy" class="partner-logo">
+                <div class="partner-desc">
+                    Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.
+                </div>
+            </div>
+
+            <!-- TDCX -->
+            <div class="partner-card">
+                <img src="tdcx.png" alt="TDCX" class="partner-logo">
+                <div class="partner-desc">
+                    Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 </body>
 </html>
