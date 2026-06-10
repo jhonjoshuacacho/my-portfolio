@@ -6,18 +6,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
-        /* Aesthetic Minimalist Palette & Variables */
+        /* Professional Dark Theme Palette & Variables */
         :root {
+            /* Your provided palette */
             --color-dark: #3B3C36;
             --color-mid-dark: #6B6E68;
             --color-mid: #A8A99D;
             --color-mid-light: #C0C2B3;
             --color-light: #EAECE1;
 
-            --bg-main: var(--color-light);
-            --text-main: var(--color-dark);
-            --text-muted: var(--color-mid-dark);
-            --border-color: var(--color-mid-light);
+            /* Dark Theme Adaptations */
+            --bg-gradient: radial-gradient(circle at 0% 0%, #3B3C36 0%, #161715 100%);
+            --bg-glass: rgba(59, 60, 54, 0.7);
+            --bg-card: rgba(234, 236, 225, 0.03);
+            --bg-card-hover: rgba(234, 236, 225, 0.08);
+            
+            --text-main: var(--color-light);
+            --text-muted: var(--color-mid-light);
+            --text-accent: var(--color-mid);
+            
+            --border-color: rgba(168, 169, 157, 0.15);
+            --border-hover: rgba(168, 169, 157, 0.5);
+            
             --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
@@ -33,7 +43,8 @@
 
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: var(--bg-main); 
+            background: var(--bg-gradient); 
+            background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -44,8 +55,10 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 24px 5%; 
-            background-color: var(--bg-main); 
+            padding: 20px 5%; 
+            background: var(--bg-glass); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color); 
             position: sticky; 
             top: 0; 
@@ -63,14 +76,15 @@
             width: 14px; 
             height: 14px; 
             border-radius: 50%; 
-            background-color: var(--color-dark); 
+            background-color: var(--text-main); 
+            box-shadow: 0 0 10px rgba(234, 236, 225, 0.3);
         }
 
         .logo-container span {
             font-weight: 500;
             letter-spacing: 0.5px;
             font-size: 1.1rem;
-            color: var(--color-dark);
+            color: var(--text-main);
         }
 
         /* Desktop Nav */
@@ -90,7 +104,7 @@
         }
 
         .nav-links li a:hover { 
-            color: var(--color-dark); 
+            color: var(--text-main); 
         }
 
         /* Mobile Menu Toggle */
@@ -105,7 +119,7 @@
         .menu-toggle span {
             width: 24px;
             height: 2px;
-            background-color: var(--color-dark);
+            background-color: var(--text-main);
             transition: 0.3s;
         }
 
@@ -129,12 +143,12 @@
             font-size: 5rem; 
             margin-bottom: 10px; 
             line-height: 1.1; 
-            color: var(--color-dark);
+            color: var(--text-main);
         }
 
         .hero-title { 
             font-size: 1.1rem; 
-            color: var(--color-mid-dark); 
+            color: var(--text-accent); 
             margin-bottom: 30px; 
             letter-spacing: 2px; 
             text-transform: uppercase;
@@ -149,17 +163,17 @@
         }
 
         .hero-roles { 
-            color: var(--color-mid-dark); 
+            color: var(--color-mid); 
             font-size: 0.95rem; 
             margin-bottom: 40px; 
             font-weight: 400; 
         }
 
         .btn-work { 
-            background-color: var(--color-dark); 
-            color: var(--color-light); 
+            background-color: transparent; 
+            color: var(--text-main); 
             padding: 14px 36px; 
-            border: 1px solid var(--color-dark); 
+            border: 1px solid var(--text-main); 
             border-radius: 0; 
             font-size: 1rem; 
             font-weight: 400; 
@@ -168,7 +182,7 @@
         }
 
         .btn-work:hover { 
-            background-color: transparent; 
+            background-color: var(--text-main); 
             color: var(--color-dark); 
         }
 
@@ -182,7 +196,8 @@
         .profile-img { 
             width: 100%; 
             border-radius: 0; 
-            filter: grayscale(20%);
+            filter: grayscale(20%) brightness(0.9);
+            box-shadow: 15px 15px 0px rgba(107, 110, 104, 0.1);
         }
 
         /* Common Section Styles */
@@ -197,12 +212,12 @@
             font-size: 2.2rem; 
             margin-bottom: 15px; 
             font-weight: 400; 
-            color: var(--color-dark);
+            color: var(--text-main);
         }
 
         .section-subtitle { 
             font-size: 1rem; 
-            color: var(--color-mid-dark); 
+            color: var(--text-accent); 
             margin-bottom: 60px; 
             font-weight: 300;
         }
@@ -215,8 +230,9 @@
         }
 
         .service-card { 
-            background-color: transparent; 
+            background-color: var(--bg-card); 
             border: 1px solid var(--border-color); 
+            backdrop-filter: blur(5px);
             padding: 40px 30px; 
             text-align: left; 
             display: flex; 
@@ -225,19 +241,20 @@
         }
 
         .service-card:hover { 
-            border-color: var(--color-dark); 
-            background-color: var(--color-light);
+            border-color: var(--border-hover); 
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
         }
 
         .card-title { 
             font-size: 1.3rem; 
             margin-bottom: 20px; 
             font-weight: 500; 
-            color: var(--color-dark); 
+            color: var(--text-main); 
         }
 
         .card-desc { 
-            color: var(--color-mid-dark); 
+            color: var(--text-muted); 
             line-height: 1.7; 
             margin-bottom: 30px; 
             flex-grow: 1; 
@@ -256,14 +273,14 @@
             margin-bottom: 10px; 
             text-align: center; 
             font-size: 0.8rem; 
-            color: var(--color-mid-dark); 
+            color: var(--text-muted); 
             background-color: transparent; 
             transition: var(--transition-smooth); 
         }
 
         .service-card:hover .pill { 
-            border-color: var(--color-mid); 
-            color: var(--color-dark); 
+            border-color: var(--text-accent); 
+            color: var(--text-main); 
         }
 
         /* Strategic Partnerships Section Styles */
@@ -275,7 +292,7 @@
 
         .partner-card { 
             position: relative; 
-            background-color: transparent; 
+            background-color: rgba(255, 255, 255, 0.02); 
             height: 200px; 
             display: flex; 
             align-items: center; 
@@ -287,21 +304,23 @@
         }
 
         .partner-card:hover { 
-            border-color: var(--color-dark); 
+            border-color: var(--border-hover); 
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
+        /* Added a soft drop shadow to original logos so they pop on dark background */
         .partner-logo { 
             max-width: 55%; 
             max-height: 55%; 
             object-fit: contain; 
             transition: var(--transition-smooth); 
-            /* Restored original colors, no filters applied */
+            filter: drop-shadow(0px 2px 4px rgba(255, 255, 255, 0.15));
         }
 
         .partner-desc { 
             position: absolute; 
             inset: 0; 
-            background-color: var(--color-dark); 
+            background-color: rgba(59, 60, 54, 0.95); 
             padding: 30px; 
             display: flex; 
             align-items: center; 
@@ -309,7 +328,7 @@
             text-align: center; 
             font-size: 0.9rem; 
             line-height: 1.6; 
-            color: var(--color-light); 
+            color: var(--text-main); 
             opacity: 0; 
             visibility: hidden; 
             transform: translateY(10px); 
@@ -337,7 +356,7 @@
         }
         
         .tool-category-box {
-            background-color: transparent;
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: 30px;
             cursor: pointer;
@@ -347,8 +366,8 @@
         }
         
         .tool-category-box:hover, .tool-category-box.active {
-            border-color: var(--color-dark);
-            background-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--border-hover);
+            background-color: var(--bg-card-hover);
         }
 
         .category-header {
@@ -360,11 +379,11 @@
         .category-title {
             font-size: 1.1rem;
             font-weight: 500;
-            color: var(--color-dark);
+            color: var(--text-main);
         }
 
         .expand-icon {
-            color: var(--color-mid-dark);
+            color: var(--text-accent);
             font-size: 1.2rem;
             font-weight: 300;
             transition: var(--transition-smooth);
@@ -372,7 +391,7 @@
 
         .tool-category-box:hover .expand-icon, .tool-category-box.active .expand-icon {
             transform: rotate(45deg);
-            color: var(--color-dark);
+            color: var(--text-main);
         }
 
         /* Fancy Staggered Expansion */
@@ -434,12 +453,12 @@
         }
 
         .tool-item:hover .tool-icon {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
 
         .tool-name {
             font-size: 0.75rem;
-            color: var(--color-mid-dark);
+            color: var(--text-muted);
             line-height: 1.2;
             font-weight: 400;
         }
@@ -457,7 +476,8 @@
                 top: 100%; 
                 left: 0; 
                 width: 100%; 
-                background-color: var(--color-light); 
+                background: rgba(44, 45, 40, 0.98); 
+                backdrop-filter: blur(15px);
                 flex-direction: column; 
                 align-items: center; 
                 gap: 0; 
@@ -468,7 +488,7 @@
             }
             .nav-links.active { max-height: 350px; }
             .nav-links li { width: 100%; text-align: center; }
-            .nav-links li a { display: block; padding: 20px; border-top: 1px solid rgba(192, 194, 179, 0.3); }
+            .nav-links li a { display: block; padding: 20px; border-top: 1px solid var(--border-color); }
             
             .services-grid { grid-template-columns: 1fr; }
             .section-container { padding: 80px 20px; }
@@ -483,14 +503,12 @@
     </style>
 </head>
 <body>
-    <!-- Minimalist Navigation -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
             <div class="logo-icon"></div>
             <span>Jhon Joshua Cacho</span>
         </div>
         
-        <!-- Mobile Hamburger Button -->
         <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -506,7 +524,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-name">Josh Cacho</h1>
@@ -522,7 +539,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="section-container">
         <h2 class="section-title">What I do</h2>
         <p class="section-subtitle">Seamless Support. Proven Reliability. Total Peace of Mind.</p>
@@ -584,7 +600,6 @@
         </div>
     </section>
 
-    <!-- Strategic Partnerships Section -->
     <section id="clients" class="section-container">
         <h2 class="section-title">Strategic Partnerships</h2>
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
@@ -601,14 +616,12 @@
         </div>
     </section>
 
-    <!-- Workflow Essentials (Tools) Section -->
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
 
         <div class="tools-grid">
             
-            <!-- Communication & Messaging -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Communication & Messaging</h3>
@@ -627,7 +640,6 @@
                 </div>
             </div>
 
-            <!-- Meetings & Video Conferencing -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Meetings & Video Conferencing</h3>
@@ -642,7 +654,6 @@
                 </div>
             </div>
 
-            <!-- Calendar & Scheduling -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Calendar & Scheduling</h3>
@@ -656,7 +667,6 @@
                 </div>
             </div>
 
-            <!-- Productivity & Office Suite -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Productivity & Office Suite</h3>
@@ -678,7 +688,6 @@
                 </div>
             </div>
 
-            <!-- Cloud Storage & Collaboration -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Cloud Storage & Collaboration</h3>
@@ -692,7 +701,6 @@
                 </div>
             </div>
 
-            <!-- CRM & Customer Management -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">CRM & Customer Management</h3>
@@ -705,7 +713,6 @@
                 </div>
             </div>
 
-            <!-- AI Assistants & LLMs -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">AI Assistants & LLMs</h3>
@@ -721,7 +728,6 @@
                 </div>
             </div>
 
-            <!-- Design & Creative Tools -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Design & Creative Tools</h3>
@@ -735,7 +741,6 @@
                 </div>
             </div>
 
-            <!-- Social Media Management -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Social Media Management</h3>
@@ -752,7 +757,6 @@
                 </div>
             </div>
 
-            <!-- Navigation & Maps -->
             <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Navigation & Maps</h3>
