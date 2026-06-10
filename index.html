@@ -3,189 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
-        /* Modern CSS Reset & Variable Definitions */
+        /* Aesthetic Minimalist Palette & Variables */
+        :root {
+            --color-dark: #3B3C36;
+            --color-mid-dark: #6B6E68;
+            --color-mid: #A8A99D;
+            --color-mid-light: #C0C2B3;
+            --color-light: #EAECE1;
+
+            --bg-main: var(--color-light);
+            --text-main: var(--color-dark);
+            --text-muted: var(--color-mid-dark);
+            --border-color: var(--color-mid-light);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
         }
         
-        :root {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --bg-card-hover: #2563eb;
-            --border-color: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #cbd5e1;
-            --accent-blue: #0ea5e9;
-            --accent-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         html { 
             scroll-behavior: smooth; 
         }
 
         body { 
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
+            font-family: 'Outfit', sans-serif; 
             background-color: var(--bg-main); 
-            color: var(--text-primary);
+            color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Executive Header & Navbar */
+        /* Navbar Styles */
         .navbar { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 18px 5%; 
-            background-color: rgba(15, 23, 42, 0.85); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 24px 5%; 
+            background-color: var(--bg-main); 
+            border-bottom: 1px solid var(--border-color); 
             position: sticky; 
             top: 0; 
-            z-index: 100; 
-            transition: var(--transition-smooth);
+            z-index: 1000; 
         }
 
         .logo-container { 
             display: flex; 
             align-items: center; 
             gap: 12px; 
+            z-index: 1001;
         }
 
         .logo-icon { 
             width: 14px; 
             height: 14px; 
             border-radius: 50%; 
-            background: var(--accent-gradient); 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+            background-color: var(--color-dark); 
         }
 
         .logo-container span {
-            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: -0.3px;
+            color: var(--color-dark);
         }
 
+        /* Desktop Nav */
         .nav-links { 
             list-style: none; 
             display: flex; 
-            gap: 32px; 
+            gap: 40px; 
         }
 
         .nav-links li a { 
             text-decoration: none; 
-            color: var(--text-secondary); 
-            transition: var(--transition-smooth); 
-            font-weight: 500;
+            color: var(--text-muted); 
+            transition: color 0.3s ease; 
+            font-weight: 400;
             font-size: 0.95rem;
-            position: relative;
-            padding: 4px 0;
+            letter-spacing: 0.5px;
         }
 
         .nav-links li a:hover { 
-            color: var(--text-primary); 
+            color: var(--color-dark); 
         }
 
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 24px;
             height: 2px;
-            background: var(--accent-blue);
-            transition: var(--transition-smooth);
+            background-color: var(--color-dark);
+            transition: 0.3s;
         }
 
-        .nav-links li a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
+        /* Hero Section Styles */
         .hero-section { 
             display: flex; 
             align-items: center; 
             padding: 100px 5%; 
-            max-width: 1300px; 
+            max-width: 1200px; 
             margin: 0 auto; 
-            gap: 80px; 
-            min-height: 85vh; 
+            gap: 60px; 
+            min-height: 80vh; 
         }
 
         .hero-content { 
-            flex: 1.2; 
+            flex: 1; 
         }
 
         .hero-name { 
-            font-family: 'Outfit', sans-serif; 
-            font-weight: 700; 
-            font-size: 5.5rem; 
-            margin-bottom: 12px; 
-            line-height: 1.05; 
-            letter-spacing: -2px;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 300; 
+            font-size: 5rem; 
+            margin-bottom: 10px; 
+            line-height: 1.1; 
+            color: var(--color-dark);
         }
 
         .hero-title { 
-            font-family: 'Outfit', sans-serif;
             font-size: 1.1rem; 
-            color: var(--accent-blue); 
-            margin-bottom: 28px; 
+            color: var(--color-mid-dark); 
+            margin-bottom: 30px; 
             letter-spacing: 2px; 
-            font-weight: 600;
             text-transform: uppercase;
         }
 
         .hero-desc { 
-            font-size: 1.2rem; 
-            line-height: 1.7; 
-            margin-bottom: 28px; 
+            font-size: 1.15rem; 
+            line-height: 1.8; 
+            margin-bottom: 25px; 
             color: var(--text-muted); 
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .hero-roles { 
-            color: var(--text-secondary); 
+            color: var(--color-mid-dark); 
             font-size: 0.95rem; 
             margin-bottom: 40px; 
             font-weight: 400; 
-            line-height: 1.6;
-            border-left: 2px solid var(--border-color);
-            padding-left: 16px;
         }
 
         .btn-work { 
-            background: var(--accent-gradient); 
-            color: white; 
+            background-color: var(--color-dark); 
+            color: var(--color-light); 
             padding: 14px 36px; 
-            border: none; 
-            border-radius: 6px; 
+            border: 1px solid var(--color-dark); 
+            border-radius: 0; 
             font-size: 1rem; 
-            font-weight: 600; 
+            font-weight: 400; 
             cursor: pointer; 
             transition: var(--transition-smooth); 
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
         }
 
         .btn-work:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
-            filter: brightness(1.1);
+            background-color: transparent; 
+            color: var(--color-dark); 
         }
 
         .hero-profile { 
-            flex: 0 0 380px; 
+            flex: 0 0 350px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -193,141 +181,146 @@
 
         .profile-img { 
             width: 100%; 
-            border-radius: 16px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: var(--transition-smooth);
-        }
-        
-        .profile-img:hover {
-            transform: scale(1.02);
-            border-color: rgba(14, 165, 233, 0.3);
+            border-radius: 0; 
+            filter: grayscale(20%);
         }
 
-        /* Corporate Section Structures */
+        /* Common Section Styles */
         .section-container { 
-            padding: 110px 5%; 
-            max-width: 1300px; 
+            padding: 100px 5%; 
+            max-width: 1200px; 
             margin: 0 auto; 
             text-align: center; 
         }
 
         .section-title { 
-            font-family: 'Outfit', sans-serif; 
-            font-size: 2.75rem; 
-            margin-bottom: 12px; 
-            font-weight: 700; 
-            letter-spacing: -1px;
+            font-size: 2.2rem; 
+            margin-bottom: 15px; 
+            font-weight: 400; 
+            color: var(--color-dark);
         }
 
         .section-subtitle { 
-            font-size: 1.15rem; 
-            color: var(--text-secondary); 
+            font-size: 1rem; 
+            color: var(--color-mid-dark); 
             margin-bottom: 60px; 
-            font-weight: 400;
+            font-weight: 300;
         }
 
-        /* Executive Services Grid */
+        /* Services Section Styles */
         .services-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 24px; 
+            gap: 30px; 
         }
 
         .service-card { 
-            background-color: var(--bg-card); 
-            border: 1px solid rgba(255, 255, 255, 0.03); 
-            border-radius: 12px; 
+            background-color: transparent; 
+            border: 1px solid var(--border-color); 
             padding: 40px 30px; 
             text-align: left; 
             display: flex; 
             flex-direction: column; 
             transition: var(--transition-smooth); 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .service-card:hover { 
-            border-color: rgba(14, 165, 233, 0.25); 
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-color: var(--color-dark); 
+            background-color: var(--color-light);
         }
 
         .card-title { 
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.4rem; 
-            margin-bottom: 16px; 
-            font-weight: 600; 
-            color: var(--text-primary); 
+            font-size: 1.3rem; 
+            margin-bottom: 20px; 
+            font-weight: 500; 
+            color: var(--color-dark); 
         }
 
         .card-desc { 
-            color: var(--text-secondary); 
-            line-height: 1.6; 
+            color: var(--color-mid-dark); 
+            line-height: 1.7; 
             margin-bottom: 30px; 
             flex-grow: 1; 
             font-size: 0.95rem; 
+            font-weight: 300;
         }
 
         .card-divider { 
-            border-top: 1px solid rgba(255, 255, 255, 0.06); 
-            margin-bottom: 24px; 
+            border-top: 1px solid var(--border-color); 
+            margin-bottom: 25px; 
         }
 
         .pill { 
-            background-color: rgba(15, 23, 42, 0.4);
             border: 1px solid var(--border-color); 
-            border-radius: 6px; 
-            padding: 10px 14px; 
+            padding: 8px 15px; 
             margin-bottom: 10px; 
             text-align: center; 
-            font-size: 0.85rem; 
-            color: var(--text-muted); 
-            font-weight: 500;
+            font-size: 0.8rem; 
+            color: var(--color-mid-dark); 
+            background-color: transparent; 
             transition: var(--transition-smooth); 
         }
 
-        .pill:hover { 
-            background-color: var(--accent-gradient); 
-            border-color: transparent;
-            color: #ffffff; 
-            transform: translateX(4px);
+        .service-card:hover .pill { 
+            border-color: var(--color-mid); 
+            color: var(--color-dark); 
         }
 
         /* Strategic Partnerships Section Styles */
         .partners-grid { 
             display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 20px; 
         }
 
         .partner-card { 
             position: relative; 
-            background-color: var(--bg-card); 
-            height: 160px; 
+            background-color: transparent; 
+            height: 200px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             cursor: pointer; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color); 
             transition: var(--transition-smooth); 
-            padding: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .partner-card:hover { 
-            transform: translateY(-4px); 
-            border-color: rgba(14, 165, 233, 0.2);
-            box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+            border-color: var(--color-dark); 
         }
 
         .partner-logo { 
-            max-width: 70%; 
+            max-width: 55%; 
             max-height: 55%; 
             object-fit: contain; 
             transition: var(--transition-smooth); 
-            filter: grayscale(1) brightness(1.5);
-            opacity: 0.85;
+            /* Restored original colors, no filters applied */
+        }
+
+        .partner-desc { 
+            position: absolute; 
+            inset: 0; 
+            background-color: var(--color-dark); 
+            padding: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            line-height: 1.6; 
+            color: var(--color-light); 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(10px); 
+            transition: var(--transition-smooth); 
+            font-weight: 300;
+        }
+
+        .partner-card:hover .partner-desc { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
         }
 
         .partner-card:hover .partner-logo { 
@@ -335,55 +328,27 @@
             transform: scale(0.9);
         }
 
-        .partner-desc { 
-            position: absolute; 
-            inset: 0; 
-            background-color: var(--bg-card); 
-            border: 1px solid var(--accent-blue); 
-            border-radius: 12px; 
-            padding: 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            font-size: 0.88rem; 
-            line-height: 1.5; 
-            color: var(--text-primary); 
-            opacity: 0; 
-            visibility: hidden; 
-            transform: scale(0.96); 
-            transition: var(--transition-smooth); 
-        }
-
-        .partner-card:hover .partner-desc { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: scale(1); 
-        }
-
-        /* Workflow Essentials (Tools) Grid */
+        /* Workflow Essentials (Tools) Section Styles */
         .tools-grid { 
             display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 20px; 
             text-align: left; 
         }
         
         .tool-category-box {
-            background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            padding: 24px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            padding: 30px;
             cursor: pointer;
             transition: var(--transition-smooth);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .tool-category-box:hover {
-            border-color: rgba(14, 165, 233, 0.3);
-            background-color: #222f43;
-            transform: translateY(-2px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+        .tool-category-box:hover, .tool-category-box.active {
+            border-color: var(--color-dark);
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
         .category-header {
@@ -393,46 +358,45 @@
         }
 
         .category-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-dark);
         }
 
         .expand-icon {
-            color: var(--text-secondary);
-            font-size: 1.4rem;
+            color: var(--color-mid-dark);
+            font-size: 1.2rem;
             font-weight: 300;
             transition: var(--transition-smooth);
         }
 
-        .tool-category-box:hover .expand-icon {
+        .tool-category-box:hover .expand-icon, .tool-category-box.active .expand-icon {
             transform: rotate(45deg);
-            color: var(--accent-blue);
+            color: var(--color-dark);
         }
 
+        /* Fancy Staggered Expansion */
         .tools-list-wrapper {
             display: grid;
             grid-template-rows: 0fr;
-            transition: var(--transition-smooth);
+            transition: grid-template-rows 0.6s cubic-bezier(0.25, 1, 0.3, 1);
         }
         
-        .tool-category-box:hover .tools-list-wrapper {
+        .tool-category-box:hover .tools-list-wrapper, .tool-category-box.active .tools-list-wrapper {
             grid-template-rows: 1fr;
         }
 
         .tools-list {
             overflow: hidden;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 20px;
-            opacity: 0;
-            transition: var(--transition-smooth);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding-top: 0;
+            transition: padding-top 0.4s ease;
         }
 
-        .tool-category-box:hover .tools-list {
-            opacity: 1;
-            padding-top: 24px;
+        .tool-category-box:hover .tools-list, .tool-category-box.active .tools-list {
+            padding-top: 30px;
         }
 
         .tool-item {
@@ -441,69 +405,108 @@
             align-items: center;
             text-align: center;
             gap: 10px;
+            width: 70px;
+            opacity: 0;
+            transform: translateY(15px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
+        /* Apply Staggered Delays for fancy animation */
+        .tool-category-box:hover .tool-item:nth-child(1), .tool-category-box.active .tool-item:nth-child(1) { transition-delay: 0.10s; }
+        .tool-category-box:hover .tool-item:nth-child(2), .tool-category-box.active .tool-item:nth-child(2) { transition-delay: 0.15s; }
+        .tool-category-box:hover .tool-item:nth-child(3), .tool-category-box.active .tool-item:nth-child(3) { transition-delay: 0.20s; }
+        .tool-category-box:hover .tool-item:nth-child(4), .tool-category-box.active .tool-item:nth-child(4) { transition-delay: 0.25s; }
+        .tool-category-box:hover .tool-item:nth-child(5), .tool-category-box.active .tool-item:nth-child(5) { transition-delay: 0.30s; }
+        .tool-category-box:hover .tool-item:nth-child(6), .tool-category-box.active .tool-item:nth-child(6) { transition-delay: 0.35s; }
+        .tool-category-box:hover .tool-item:nth-child(7), .tool-category-box.active .tool-item:nth-child(7) { transition-delay: 0.40s; }
+        .tool-category-box:hover .tool-item:nth-child(8), .tool-category-box.active .tool-item:nth-child(8) { transition-delay: 0.45s; }
+
+        .tool-category-box:hover .tool-item, .tool-category-box.active .tool-item {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .tool-icon {
             width: 32px;
             height: 32px;
             object-fit: contain;
-            transition: var(--transition-smooth);
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
         .tool-item:hover .tool-icon {
-            transform: translateY(-4px) scale(1.1);
+            transform: translateY(-5px);
         }
 
         .tool-name {
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--color-mid-dark);
             line-height: 1.2;
-            font-weight: 500;
+            font-weight: 400;
         }
 
-        /* Premium Responsiveness Breakpoints */
-        @media (max-width: 1100px) {
-            .hero-name { font-size: 4.5rem; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .partners-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
+        /* Mobile Responsiveness */
         @media (max-width: 900px) {
-            .navbar { padding: 18px 24px; }
-            .nav-links { display: none; }
-            .hero-section { flex-direction: column-reverse; text-align: center; padding: 60px 24px; gap: 48px; }
-            .hero-profile { flex: auto; width: 100%; max-width: 320px; }
-            .hero-name { font-size: 3.75rem; }
-            .hero-roles { border-left: none; padding-left: 0; }
+            .navbar { padding: 20px 5%; }
+            .hero-section { flex-direction: column-reverse; text-align: center; padding: 60px 20px; gap: 40px; }
+            .hero-profile { flex: auto; width: 100%; max-width: 300px; }
+            .hero-name { font-size: 3.5rem; }
+            
+            .menu-toggle { display: flex; }
+            .nav-links { 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background-color: var(--color-light); 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0; 
+                border-bottom: 1px solid var(--border-color);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+            }
+            .nav-links.active { max-height: 350px; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a { display: block; padding: 20px; border-top: 1px solid rgba(192, 194, 179, 0.3); }
+            
             .services-grid { grid-template-columns: 1fr; }
-            .partners-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-container { padding: 80px 20px; }
+            .partners-grid { grid-template-columns: 1fr 1fr; }
             .tools-grid { grid-template-columns: 1fr; }
-            .section-container { padding: 80px 24px; }
         }
-
-        @media (max-width: 480px) {
-            .hero-name { font-size: 3rem; }
+        
+        @media (max-width: 600px) {
             .partners-grid { grid-template-columns: 1fr; }
-            .partner-card { height: 140px; }
+            .partner-card { height: 180px; }
         }
     </style>
 </head>
 <body>
+    <!-- Minimalist Navigation -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
             <div class="logo-icon"></div>
             <span>Jhon Joshua Cacho</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#clients">Clients</a></li>
-            <li><a href="#accolades">Accolades</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#contact">Contact</a></li>
+        
+        <!-- Mobile Hamburger Button -->
+        <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+            <li><a href="#clients" onclick="toggleMenu()">Clients</a></li>
+            <li><a href="#tools" onclick="toggleMenu()">Tools</a></li>
+            <li><a href="#accolades" onclick="toggleMenu()">Accolades</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-name">Josh Cacho</h1>
@@ -519,6 +522,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="section-container">
         <h2 class="section-title">What I do</h2>
         <p class="section-subtitle">Seamless Support. Proven Reliability. Total Peace of Mind.</p>
@@ -580,6 +584,7 @@
         </div>
     </section>
 
+    <!-- Strategic Partnerships Section -->
     <section id="clients" class="section-container">
         <h2 class="section-title">Strategic Partnerships</h2>
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
@@ -592,17 +597,19 @@
             <div class="partner-card"><img src="foundever.png" alt="Foundever" class="partner-logo"><div class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</div></div>
             <div class="partner-card"><img src="temu.png" alt="Temu" class="partner-logo"><div class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</div></div>
             <div class="partner-card"><img src="ovo.png" alt="OVO Energy" class="partner-logo"><div class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</div></div>
-            <div class="partner-card"><img src="tdcx.png" alt="TDCX" class="partner-logo"><div class="partner-desc">Provided peer mentorship while managing concurrent workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</div></div>
+            <div class="partner-card"><img src="tdcx.png" alt="TDCX" class="partner-logo"><div class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</div></div>
         </div>
     </section>
 
+    <!-- Workflow Essentials (Tools) Section -->
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
 
         <div class="tools-grid">
             
-            <div class="tool-category-box">
+            <!-- Communication & Messaging -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Communication & Messaging</h3>
                     <span class="expand-icon">+</span>
@@ -620,7 +627,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Meetings & Video Conferencing -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Meetings & Video Conferencing</h3>
                     <span class="expand-icon">+</span>
@@ -634,7 +642,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Calendar & Scheduling -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Calendar & Scheduling</h3>
                     <span class="expand-icon">+</span>
@@ -647,7 +656,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Productivity & Office Suite -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Productivity & Office Suite</h3>
                     <span class="expand-icon">+</span>
@@ -668,7 +678,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Cloud Storage & Collaboration -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Cloud Storage & Collaboration</h3>
                     <span class="expand-icon">+</span>
@@ -681,7 +692,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- CRM & Customer Management -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">CRM & Customer Management</h3>
                     <span class="expand-icon">+</span>
@@ -693,7 +705,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- AI Assistants & LLMs -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">AI Assistants & LLMs</h3>
                     <span class="expand-icon">+</span>
@@ -708,7 +721,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Design & Creative Tools -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Design & Creative Tools</h3>
                     <span class="expand-icon">+</span>
@@ -721,7 +735,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Social Media Management -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Social Media Management</h3>
                     <span class="expand-icon">+</span>
@@ -737,7 +752,8 @@
                 </div>
             </div>
 
-            <div class="tool-category-box">
+            <!-- Navigation & Maps -->
+            <div class="tool-category-box" onclick="toggleToolBox(this)">
                 <div class="category-header">
                     <h3 class="category-title">Navigation & Maps</h3>
                     <span class="expand-icon">+</span>
@@ -752,5 +768,27 @@
         </div>
     </section>
 
+    <script>
+        // Toggle mobile navigation menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Toggle tool category expansion on click (especially for mobile usability)
+        function toggleToolBox(element) {
+            // Check if it's already active to toggle it off
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                // Optional: Close other open boxes
+                const allBoxes = document.querySelectorAll('.tool-category-box');
+                allBoxes.forEach(box => box.classList.remove('active'));
+                
+                // Open the clicked box
+                element.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
