@@ -6,25 +6,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
-        /* Elegant Dark Mode Palette & Variables */
+        /* Professional Navy Blue Palette & Variables */
         :root {
-            /* Backgrounds */
-            --bg-gradient: radial-gradient(circle at 15% 0%, #2a2a2a 0%, #080808 100%);
-            --bg-glass: rgba(10, 10, 10, 0.85);
-            --bg-card: rgba(255, 255, 255, 0.02);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            /* Backgrounds based on image_2475e8.jpg */
+            --bg-gradient: radial-gradient(circle at top center, #161a38 0%, #0a0b1a 100%);
+            --bg-glass: rgba(10, 11, 26, 0.85);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.07);
             
             /* Typography */
             --text-main: #ffffff;
-            --text-muted: #aaaaaa;
-            --text-accent: #cccccc;
+            --text-muted: #a4b1cd;
+            --text-accent: #6c88e8; /* Subtle blue accent */
             
             /* Borders */
             --border-color: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(255, 255, 255, 0.3);
+            --border-hover: rgba(108, 136, 232, 0.4);
             
             /* Animations */
-            --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+            --transition-smooth: all 0.3s ease;
         }
 
         * { 
@@ -72,8 +72,8 @@
             width: 14px; 
             height: 14px; 
             border-radius: 50%; 
-            background-color: var(--text-main); 
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            background-color: var(--text-accent); 
+            box-shadow: 0 0 12px rgba(108, 136, 232, 0.4);
         }
 
         .logo-container span {
@@ -93,7 +93,7 @@
         .nav-links li a { 
             text-decoration: none; 
             color: var(--text-muted); 
-            transition: color 0.3s ease; 
+            transition: var(--transition-smooth); 
             font-weight: 400;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
@@ -169,8 +169,8 @@
             background-color: transparent; 
             color: var(--text-main); 
             padding: 14px 36px; 
-            border: 1px solid var(--text-main); 
-            border-radius: 0; 
+            border: 1px solid var(--border-hover); 
+            border-radius: 4px; 
             font-size: 1rem; 
             font-weight: 400; 
             cursor: pointer; 
@@ -178,8 +178,9 @@
         }
 
         .btn-work:hover { 
-            background-color: var(--text-main); 
-            color: #080808; 
+            background-color: var(--text-accent); 
+            color: #ffffff; 
+            border-color: var(--text-accent);
         }
 
         .hero-profile { 
@@ -191,9 +192,9 @@
 
         .profile-img { 
             width: 100%; 
-            border-radius: 0; 
-            filter: none; /* Changed from grayscale to none */
-            box-shadow: 15px 15px 0px rgba(255, 255, 255, 0.03);
+            border-radius: 8px; /* Slightly rounded for a professional look */
+            filter: none; /* Removed the grayscale filter to restore natural color */
+            box-shadow: 15px 15px 0px rgba(108, 136, 232, 0.08); /* Subtle navy/blue shadow */
         }
 
         /* Common Section Styles */
@@ -228,6 +229,7 @@
         .service-card { 
             background-color: var(--bg-card); 
             border: 1px solid var(--border-color); 
+            border-radius: 6px;
             backdrop-filter: blur(5px);
             padding: 40px 30px; 
             text-align: left; 
@@ -240,6 +242,7 @@
             border-color: var(--border-hover); 
             background-color: var(--bg-card-hover);
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .card-title { 
@@ -265,6 +268,7 @@
 
         .pill { 
             border: 1px solid var(--border-color); 
+            border-radius: 4px;
             padding: 8px 15px; 
             margin-bottom: 10px; 
             text-align: center; 
@@ -275,7 +279,7 @@
         }
 
         .service-card:hover .pill { 
-            border-color: var(--text-main); 
+            border-color: var(--text-accent); 
             color: var(--text-main); 
         }
 
@@ -289,6 +293,7 @@
         .partner-card { 
             position: relative; 
             background-color: var(--bg-card); 
+            border-radius: 6px;
             height: 200px; 
             display: flex; 
             align-items: center; 
@@ -315,7 +320,7 @@
         .partner-desc { 
             position: absolute; 
             inset: 0; 
-            background-color: rgba(15, 15, 15, 0.95); 
+            background-color: rgba(10, 11, 26, 0.95); 
             padding: 30px; 
             display: flex; 
             align-items: center; 
@@ -342,75 +347,45 @@
             transform: scale(0.9);
         }
 
-        /* Workflow Essentials (Tools) Section Styles */
+        /* Redesigned Workflow Essentials Section Styles */
         .tools-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
             text-align: left; 
         }
         
-        .tool-category-box {
+        .tool-category-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
+            border-radius: 8px;
             padding: 30px;
-            cursor: pointer;
             transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
         }
         
-        .tool-category-box:hover, .tool-category-box.active {
+        .tool-category-card:hover {
             border-color: var(--border-hover);
             background-color: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .category-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 500;
             color: var(--text-main);
         }
 
-        .expand-icon {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            font-weight: 300;
-            transition: var(--transition-smooth);
-        }
-
-        .tool-category-box:hover .expand-icon, .tool-category-box.active .expand-icon {
-            transform: rotate(45deg);
-            color: var(--text-main);
-        }
-
-        /* Fancy Staggered Expansion */
-        .tools-list-wrapper {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.6s cubic-bezier(0.25, 1, 0.3, 1);
-        }
-        
-        .tool-category-box:hover .tools-list-wrapper, .tool-category-box.active .tools-list-wrapper {
-            grid-template-rows: 1fr;
-        }
-
         .tools-list {
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding-top: 0;
-            transition: padding-top 0.4s ease;
-        }
-
-        .tool-category-box:hover .tools-list, .tool-category-box.active .tools-list {
-            padding-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 20px 15px;
         }
 
         .tool-item {
@@ -419,37 +394,18 @@
             align-items: center;
             text-align: center;
             gap: 10px;
-            width: 70px;
-            opacity: 0;
-            transform: translateY(15px) scale(0.95);
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+            transition: var(--transition-smooth);
         }
 
-        /* Apply Staggered Delays for fancy animation */
-        .tool-category-box:hover .tool-item:nth-child(1), .tool-category-box.active .tool-item:nth-child(1) { transition-delay: 0.10s; }
-        .tool-category-box:hover .tool-item:nth-child(2), .tool-category-box.active .tool-item:nth-child(2) { transition-delay: 0.15s; }
-        .tool-category-box:hover .tool-item:nth-child(3), .tool-category-box.active .tool-item:nth-child(3) { transition-delay: 0.20s; }
-        .tool-category-box:hover .tool-item:nth-child(4), .tool-category-box.active .tool-item:nth-child(4) { transition-delay: 0.25s; }
-        .tool-category-box:hover .tool-item:nth-child(5), .tool-category-box.active .tool-item:nth-child(5) { transition-delay: 0.30s; }
-        .tool-category-box:hover .tool-item:nth-child(6), .tool-category-box.active .tool-item:nth-child(6) { transition-delay: 0.35s; }
-        .tool-category-box:hover .tool-item:nth-child(7), .tool-category-box.active .tool-item:nth-child(7) { transition-delay: 0.40s; }
-        .tool-category-box:hover .tool-item:nth-child(8), .tool-category-box.active .tool-item:nth-child(8) { transition-delay: 0.45s; }
-
-        .tool-category-box:hover .tool-item, .tool-category-box.active .tool-item {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .tool-item:hover {
+            transform: translateY(-3px);
         }
 
         .tool-icon {
             width: 32px;
             height: 32px;
             object-fit: contain;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.3, 1);
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
-        }
-
-        .tool-item:hover .tool-icon {
-            transform: translateY(-5px) scale(1.1);
         }
 
         .tool-name {
@@ -472,7 +428,7 @@
                 top: 100%; 
                 left: 0; 
                 width: 100%; 
-                background: rgba(10, 10, 10, 0.98); 
+                background: rgba(10, 11, 26, 0.98); 
                 backdrop-filter: blur(15px);
                 flex-direction: column; 
                 align-items: center; 
@@ -617,7 +573,7 @@
         </div>
     </section>
 
-    <!-- Workflow Essentials (Tools) Section -->
+    <!-- Workflow Essentials (Tools) Section - Redesigned Dashboard -->
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
@@ -625,159 +581,96 @@
         <div class="tools-grid">
             
             <!-- Communication & Messaging -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Communication & Messaging</h3>
-                    <span class="expand-icon">+</span>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="gmail.png" alt="Gmail" class="tool-icon"><span class="tool-name">Gmail</span></div>
-                        <div class="tool-item"><img src="outlook.png" alt="Outlook" class="tool-icon"><span class="tool-name">Outlook</span></div>
-                        <div class="tool-item"><img src="gchat.png" alt="Google Chat" class="tool-icon"><span class="tool-name">Google Chat</span></div>
-                        <div class="tool-item"><img src="teams.png" alt="Microsoft Teams" class="tool-icon"><span class="tool-name">Microsoft Teams</span></div>
-                        <div class="tool-item"><img src="whatsapp.png" alt="WhatsApp" class="tool-icon"><span class="tool-name">WhatsApp</span></div>
-                        <div class="tool-item"><img src="messenger.png" alt="Messenger" class="tool-icon"><span class="tool-name">Messenger</span></div>
-                        <div class="tool-item"><img src="zoomm.png" alt="Zoom" class="tool-icon"><span class="tool-name">Zoom</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="gmail.png" alt="Gmail" class="tool-icon"><span class="tool-name">Gmail</span></div>
+                    <div class="tool-item"><img src="outlook.png" alt="Outlook" class="tool-icon"><span class="tool-name">Outlook</span></div>
+                    <div class="tool-item"><img src="gchat.png" alt="Google Chat" class="tool-icon"><span class="tool-name">Google Chat</span></div>
+                    <div class="tool-item"><img src="teams.png" alt="Microsoft Teams" class="tool-icon"><span class="tool-name">Microsoft Teams</span></div>
+                    <div class="tool-item"><img src="whatsapp.png" alt="WhatsApp" class="tool-icon"><span class="tool-name">WhatsApp</span></div>
+                    <div class="tool-item"><img src="messenger.png" alt="Messenger" class="tool-icon"><span class="tool-name">Messenger</span></div>
                 </div>
             </div>
 
             <!-- Meetings & Video Conferencing -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <div class="tool-category-card">
                 <div class="category-header">
-                    <h3 class="category-title">Meetings & Video Conferencing</h3>
-                    <span class="expand-icon">+</span>
+                    <h3 class="category-title">Meetings & Conferencing</h3>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="gmeet.png" alt="Google Meet" class="tool-icon"><span class="tool-name">Google Meet</span></div>
-                        <div class="tool-item"><img src="zoomm.png" alt="Zoom" class="tool-icon"><span class="tool-name">Zoom</span></div>
-                        <div class="tool-item"><img src="teams.png" alt="Microsoft Teams" class="tool-icon"><span class="tool-name">Microsoft Teams</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Calendar & Scheduling -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
-                <div class="category-header">
-                    <h3 class="category-title">Calendar & Scheduling</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="gcalendar.png" alt="Google Calendar" class="tool-icon"><span class="tool-name">Google Calendar</span></div>
-                        <div class="tool-item"><img src="bookings.png" alt="Microsoft Bookings" class="tool-icon"><span class="tool-name">Microsoft Bookings</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="gmeet.png" alt="Google Meet" class="tool-icon"><span class="tool-name">Google Meet</span></div>
+                    <div class="tool-item"><img src="zoomm.png" alt="Zoom" class="tool-icon"><span class="tool-name">Zoom</span></div>
+                    <div class="tool-item"><img src="teams.png" alt="Microsoft Teams" class="tool-icon"><span class="tool-name">Teams</span></div>
                 </div>
             </div>
 
             <!-- Productivity & Office Suite -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Productivity & Office Suite</h3>
-                    <span class="expand-icon">+</span>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="googleworkspace.png" alt="Google Workspace" class="tool-icon"><span class="tool-name">Google Workspace</span></div>
-                        <div class="tool-item"><img src="microsoft.png" alt="Microsoft 365" class="tool-icon"><span class="tool-name">Microsoft 365</span></div>
-                        <div class="tool-item"><img src="gdocs.png" alt="Google Docs" class="tool-icon"><span class="tool-name">Google Docs</span></div>
-                        <div class="tool-item"><img src="gsheets.png" alt="Google Sheets" class="tool-icon"><span class="tool-name">Google Sheets</span></div>
-                        <div class="tool-item"><img src="gslide.png" alt="Google Slides" class="tool-icon"><span class="tool-name">Google Slides</span></div>
-                        <div class="tool-item"><img src="gforms.png" alt="Google Forms" class="tool-icon"><span class="tool-name">Google Forms</span></div>
-                        <div class="tool-item"><img src="word.png" alt="Microsoft Word" class="tool-icon"><span class="tool-name">Microsoft Word</span></div>
-                        <div class="tool-item"><img src="excel.png" alt="Excel" class="tool-icon"><span class="tool-name">Excel</span></div>
-                        <div class="tool-item"><img src="powerpoint.png" alt="PowerPoint" class="tool-icon"><span class="tool-name">PowerPoint</span></div>
-                        <div class="tool-item"><img src="onenote.png" alt="OneNote" class="tool-icon"><span class="tool-name">OneNote</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="googleworkspace.png" alt="Google Workspace" class="tool-icon"><span class="tool-name">Workspace</span></div>
+                    <div class="tool-item"><img src="microsoft.png" alt="Microsoft 365" class="tool-icon"><span class="tool-name">Office 365</span></div>
+                    <div class="tool-item"><img src="gdocs.png" alt="Google Docs" class="tool-icon"><span class="tool-name">Docs</span></div>
+                    <div class="tool-item"><img src="gsheets.png" alt="Google Sheets" class="tool-icon"><span class="tool-name">Sheets</span></div>
+                    <div class="tool-item"><img src="gslide.png" alt="Google Slides" class="tool-icon"><span class="tool-name">Slides</span></div>
+                    <div class="tool-item"><img src="word.png" alt="Microsoft Word" class="tool-icon"><span class="tool-name">Word</span></div>
+                    <div class="tool-item"><img src="excel.png" alt="Excel" class="tool-icon"><span class="tool-name">Excel</span></div>
+                    <div class="tool-item"><img src="powerpoint.png" alt="PowerPoint" class="tool-icon"><span class="tool-name">PowerPoint</span></div>
+                </div>
+            </div>
+
+            <!-- Calendar & Scheduling -->
+            <div class="tool-category-card">
+                <div class="category-header">
+                    <h3 class="category-title">Calendar & Scheduling</h3>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="gcalendar.png" alt="Google Calendar" class="tool-icon"><span class="tool-name">Google Calendar</span></div>
+                    <div class="tool-item"><img src="bookings.png" alt="Microsoft Bookings" class="tool-icon"><span class="tool-name">Bookings</span></div>
                 </div>
             </div>
 
             <!-- Cloud Storage & Collaboration -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <div class="tool-category-card">
                 <div class="category-header">
-                    <h3 class="category-title">Cloud Storage & Collaboration</h3>
-                    <span class="expand-icon">+</span>
+                    <h3 class="category-title">Storage & Collaboration</h3>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="gdrive.png" alt="Google Drive" class="tool-icon"><span class="tool-name">Google Drive</span></div>
-                        <div class="tool-item"><img src="sharepoint.png" alt="SharePoint" class="tool-icon"><span class="tool-name">SharePoint</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CRM & Customer Management -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
-                <div class="category-header">
-                    <h3 class="category-title">CRM & Customer Management</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="salesforce.png" alt="Salesforce" class="tool-icon"><span class="tool-name">Salesforce</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="gdrive.png" alt="Google Drive" class="tool-icon"><span class="tool-name">Drive</span></div>
+                    <div class="tool-item"><img src="sharepoint.png" alt="SharePoint" class="tool-icon"><span class="tool-name">SharePoint</span></div>
+                    <div class="tool-item"><img src="salesforce.png" alt="Salesforce" class="tool-icon"><span class="tool-name">Salesforce</span></div>
                 </div>
             </div>
 
             <!-- AI Assistants & LLMs -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">AI Assistants & LLMs</h3>
-                    <span class="expand-icon">+</span>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="chatgpt.png" alt="ChatGPT" class="tool-icon"><span class="tool-name">ChatGPT</span></div>
-                        <div class="tool-item"><img src="claude.png" alt="Claude" class="tool-icon"><span class="tool-name">Claude</span></div>
-                        <div class="tool-item"><img src="geminii.png" alt="Gemini" class="tool-icon"><span class="tool-name">Gemini</span></div>
-                        <div class="tool-item"><img src="copilot.png" alt="Microsoft Copilot" class="tool-icon"><span class="tool-name">Microsoft Copilot</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="chatgpt.png" alt="ChatGPT" class="tool-icon"><span class="tool-name">ChatGPT</span></div>
+                    <div class="tool-item"><img src="claude.png" alt="Claude" class="tool-icon"><span class="tool-name">Claude</span></div>
+                    <div class="tool-item"><img src="geminii.png" alt="Gemini" class="tool-icon"><span class="tool-name">Gemini</span></div>
+                    <div class="tool-item"><img src="copilot.png" alt="Microsoft Copilot" class="tool-icon"><span class="tool-name">Copilot</span></div>
                 </div>
             </div>
 
-            <!-- Design & Creative Tools -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
+            <!-- Design & Social Media -->
+            <div class="tool-category-card">
                 <div class="category-header">
-                    <h3 class="category-title">Design & Creative Tools</h3>
-                    <span class="expand-icon">+</span>
+                    <h3 class="category-title">Design & Social Media</h3>
                 </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="canva.png" alt="Canva" class="tool-icon"><span class="tool-name">Canva</span></div>
-                        <div class="tool-item"><img src="capcut.png" alt="CapCut" class="tool-icon"><span class="tool-name">CapCut</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Social Media Management -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
-                <div class="category-header">
-                    <h3 class="category-title">Social Media Management</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="facebook.png" alt="Facebook" class="tool-icon"><span class="tool-name">Facebook</span></div>
-                        <div class="tool-item"><img src="ig.png" alt="Instagram" class="tool-icon"><span class="tool-name">Instagram</span></div>
-                        <div class="tool-item"><img src="threads.png" alt="Threads" class="tool-icon"><span class="tool-name">Threads</span></div>
-                        <div class="tool-item"><img src="twitter.png" alt="Twitter (X)" class="tool-icon"><span class="tool-name">Twitter (X)</span></div>
-                        <div class="tool-item"><img src="tiktok.png" alt="TikTok" class="tool-icon"><span class="tool-name">TikTok</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation & Maps -->
-            <div class="tool-category-box" onclick="toggleToolBox(this)">
-                <div class="category-header">
-                    <h3 class="category-title">Navigation & Maps</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="tools-list-wrapper">
-                    <div class="tools-list">
-                        <div class="tool-item"><img src="googlemaps.png" alt="Google Maps" class="tool-icon"><span class="tool-name">Google Maps</span></div>
-                    </div>
+                <div class="tools-list">
+                    <div class="tool-item"><img src="canva.png" alt="Canva" class="tool-icon"><span class="tool-name">Canva</span></div>
+                    <div class="tool-item"><img src="capcut.png" alt="CapCut" class="tool-icon"><span class="tool-name">CapCut</span></div>
+                    <div class="tool-item"><img src="facebook.png" alt="Facebook" class="tool-icon"><span class="tool-name">Facebook</span></div>
+                    <div class="tool-item"><img src="ig.png" alt="Instagram" class="tool-icon"><span class="tool-name">Instagram</span></div>
+                    <div class="tool-item"><img src="twitter.png" alt="Twitter (X)" class="tool-icon"><span class="tool-name">Twitter (X)</span></div>
                 </div>
             </div>
 
@@ -789,21 +682,6 @@
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
-        }
-
-        // Toggle tool category expansion on click (especially for mobile usability)
-        function toggleToolBox(element) {
-            // Check if it's already active to toggle it off
-            if (element.classList.contains('active')) {
-                element.classList.remove('active');
-            } else {
-                // Optional: Close other open boxes
-                const allBoxes = document.querySelectorAll('.tool-category-box');
-                allBoxes.forEach(box => box.classList.remove('active'));
-                
-                // Open the clicked box
-                element.classList.add('active');
-            }
         }
     </script>
 </body>
