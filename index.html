@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
-        /* Professional Navy Blue Palette & Variables */
+        /* Light Theme Palette & Variables based on provided images */
         :root {
-            /* Backgrounds based on image_2475e8.jpg */
-            --bg-gradient: radial-gradient(circle at top center, #161a38 0%, #0a0b1a 100%);
-            --bg-glass: rgba(10, 11, 26, 0.85);
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.07);
+            /* Backgrounds */
+            --bg-main: #e2f1f2; /* Light pale blue/cyan */
+            --bg-card: #ffffff;
+            --bg-nav: rgba(226, 241, 242, 0.95);
             
             /* Typography */
-            --text-main: #ffffff;
-            --text-muted: #a4b1cd;
-            --text-accent: #6c88e8; /* Subtle blue accent */
+            --text-dark: #0b3136; /* Deep dark slate for headings */
+            --text-primary: #127c76; /* Dark teal for highlights/titles */
+            --text-muted: #5e767a; /* Muted slate for body text */
             
-            /* Borders */
-            --border-color: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(108, 136, 232, 0.4);
+            /* Buttons & Borders */
+            --btn-filled: #127c76;
+            --btn-filled-hover: #0d5e59;
+            --border-color: #d1e3e5;
+            --border-hover: #127c76;
             
             /* Animations */
             --transition-smooth: all 0.3s ease;
@@ -39,9 +40,8 @@
 
         body { 
             font-family: 'Outfit', sans-serif; 
-            background: var(--bg-gradient); 
-            background-attachment: fixed;
-            color: var(--text-main);
+            background-color: var(--bg-main); 
+            color: var(--text-muted);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
@@ -52,10 +52,9 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 20px 5%; 
-            background: var(--bg-glass); 
+            background: var(--bg-nav); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color); 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
@@ -68,42 +67,45 @@
             z-index: 1001;
         }
 
-        .logo-icon { 
-            width: 14px; 
-            height: 14px; 
-            border-radius: 50%; 
-            background-color: var(--text-accent); 
-            box-shadow: 0 0 12px rgba(108, 136, 232, 0.4);
-        }
-
         .logo-container span {
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 0.5px;
-            font-size: 1.1rem;
-            color: var(--text-main);
+            font-size: 1.4rem;
+            color: var(--text-dark);
         }
 
-        /* Desktop Nav */
         .nav-links { 
             list-style: none; 
             display: flex; 
-            gap: 40px; 
+            gap: 30px; 
+            align-items: center;
         }
 
         .nav-links li a { 
             text-decoration: none; 
-            color: var(--text-muted); 
+            color: var(--text-primary); 
             transition: var(--transition-smooth); 
-            font-weight: 400;
+            font-weight: 500;
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
         }
 
         .nav-links li a:hover { 
-            color: var(--text-main); 
+            color: var(--text-dark); 
         }
 
-        /* Mobile Menu Toggle */
+        .btn-nav {
+            background-color: var(--btn-filled);
+            color: #ffffff !important;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--btn-filled-hover);
+            color: #ffffff !important;
+        }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -115,7 +117,7 @@
         .menu-toggle span {
             width: 24px;
             height: 2px;
-            background-color: var(--text-main);
+            background-color: var(--text-dark);
             transition: 0.3s;
         }
 
@@ -123,78 +125,121 @@
         .hero-section { 
             display: flex; 
             align-items: center; 
-            padding: 100px 5%; 
+            padding: 80px 5%; 
             max-width: 1200px; 
             margin: 0 auto; 
             gap: 60px; 
-            min-height: 80vh; 
+            min-height: 85vh; 
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-content { 
             flex: 1; 
+            z-index: 2;
         }
 
-        .hero-name { 
-            font-weight: 300; 
-            font-size: 5rem; 
-            margin-bottom: 10px; 
-            line-height: 1.1; 
-            color: var(--text-main);
+        .hero-greeting {
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .hero-greeting span {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .hero-title { 
-            font-size: 1.1rem; 
-            color: var(--text-accent); 
-            margin-bottom: 30px; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
+            font-size: 2.5rem; 
+            color: var(--text-primary); 
+            margin-bottom: 25px; 
+            font-weight: 600;
         }
 
         .hero-desc { 
-            font-size: 1.15rem; 
+            font-size: 1.05rem; 
             line-height: 1.8; 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             color: var(--text-muted); 
-            font-weight: 300;
+            font-weight: 400;
+            max-width: 90%;
         }
 
         .hero-roles { 
             color: var(--text-muted); 
             font-size: 0.95rem; 
             margin-bottom: 40px; 
-            font-weight: 400; 
+            font-weight: 500; 
         }
 
-        .btn-work { 
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-outline { 
             background-color: transparent; 
-            color: var(--text-main); 
-            padding: 14px 36px; 
-            border: 1px solid var(--border-hover); 
+            color: var(--text-primary); 
+            padding: 14px 32px; 
+            border: 2px solid var(--text-primary); 
             border-radius: 4px; 
-            font-size: 1rem; 
-            font-weight: 400; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
             cursor: pointer; 
             transition: var(--transition-smooth); 
         }
 
-        .btn-work:hover { 
-            background-color: var(--text-accent); 
+        .btn-outline:hover { 
+            background-color: rgba(18, 124, 118, 0.1); 
+        }
+
+        .btn-filled {
+            background-color: var(--btn-filled); 
             color: #ffffff; 
-            border-color: var(--text-accent);
+            padding: 14px 32px; 
+            border: 2px solid var(--btn-filled); 
+            border-radius: 4px; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: var(--transition-smooth); 
+        }
+
+        .btn-filled:hover {
+            background-color: var(--btn-filled-hover);
+            border-color: var(--btn-filled-hover);
         }
 
         .hero-profile { 
-            flex: 0 0 350px; 
+            flex: 0 0 450px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-circle-bg {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 50px solid rgba(255, 255, 255, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
         }
 
         .profile-img { 
             width: 100%; 
-            border-radius: 8px; /* Slightly rounded for a professional look */
-            filter: none; /* Removed the grayscale filter to restore natural color */
-            box-shadow: 15px 15px 0px rgba(108, 136, 232, 0.08); /* Subtle navy/blue shadow */
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Common Section Styles */
@@ -208,18 +253,18 @@
         .section-title { 
             font-size: 2.2rem; 
             margin-bottom: 15px; 
-            font-weight: 400; 
-            color: var(--text-main);
+            font-weight: 600; 
+            color: var(--text-dark);
         }
 
         .section-subtitle { 
             font-size: 1rem; 
             color: var(--text-muted); 
             margin-bottom: 60px; 
-            font-weight: 300;
+            font-weight: 400;
         }
 
-        /* Services Section Styles */
+        /* Services Section (What I Do) - Matching 2nd Image */
         .services-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -228,126 +273,189 @@
 
         .service-card { 
             background-color: var(--bg-card); 
-            border: 1px solid var(--border-color); 
-            border-radius: 6px;
-            backdrop-filter: blur(5px);
-            padding: 40px 30px; 
-            text-align: left; 
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: center; 
             display: flex; 
             flex-direction: column; 
+            overflow: hidden;
             transition: var(--transition-smooth); 
         }
 
-        .service-card:hover { 
-            border-color: var(--border-hover); 
-            background-color: var(--bg-card-hover);
+        .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .service-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #d1e3e5; /* Placeholder color for future images */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-content {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-title { 
-            font-size: 1.3rem; 
-            margin-bottom: 20px; 
-            font-weight: 500; 
-            color: var(--text-main); 
+            font-size: 1.4rem; 
+            margin-bottom: 15px; 
+            font-weight: 600; 
+            color: var(--text-primary); 
         }
 
         .card-desc { 
             color: var(--text-muted); 
-            line-height: 1.7; 
-            margin-bottom: 30px; 
-            flex-grow: 1; 
-            font-size: 0.95rem; 
-            font-weight: 300;
-        }
-
-        .card-divider { 
-            border-top: 1px solid var(--border-color); 
+            line-height: 1.6; 
             margin-bottom: 25px; 
+            font-size: 0.9rem; 
+            font-weight: 400;
         }
 
-        .pill { 
-            border: 1px solid var(--border-color); 
-            border-radius: 4px;
-            padding: 8px 15px; 
-            margin-bottom: 10px; 
-            text-align: center; 
-            font-size: 0.8rem; 
-            color: var(--text-muted); 
-            background-color: transparent; 
-            transition: var(--transition-smooth); 
+        /* Replaced buttons with organized text descriptions */
+        .service-descriptions {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .service-card:hover .pill { 
-            border-color: var(--text-accent); 
-            color: var(--text-main); 
+        .service-descriptions p {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin: 0;
         }
 
-        /* Strategic Partnerships Section Styles */
+        /* Strategic Partnerships Section - Matching 3rd Image */
         .partners-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 20px; 
         }
 
         .partner-card { 
-            position: relative; 
             background-color: var(--bg-card); 
-            border-radius: 6px;
-            height: 200px; 
+            border: 1px solid var(--border-color);
+            aspect-ratio: 1 / 1; /* Creates the square shape */
             display: flex; 
+            flex-direction: column;
             align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            border: 1px solid var(--border-color); 
+            justify-content: space-between; 
+            padding: 40px 20px;
             transition: var(--transition-smooth); 
-            overflow: hidden;
         }
 
         .partner-card:hover { 
             border-color: var(--border-hover); 
-            background-color: var(--bg-card-hover);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .partner-logo { 
-            max-width: 55%; 
-            max-height: 55%; 
+            max-width: 60px; 
+            max-height: 60px; 
             object-fit: contain; 
-            transition: var(--transition-smooth); 
-            filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.5));
+            margin-bottom: 20px;
         }
 
-        .partner-desc { 
-            position: absolute; 
-            inset: 0; 
-            background-color: rgba(10, 11, 26, 0.95); 
-            padding: 30px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            font-size: 0.9rem; 
-            line-height: 1.6; 
-            color: var(--text-main); 
-            opacity: 0; 
-            visibility: hidden; 
-            transform: translateY(10px); 
-            transition: var(--transition-smooth); 
-            font-weight: 300;
+        .partner-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        .partner-card:hover .partner-desc { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateY(0); 
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
         }
 
-        .partner-card:hover .partner-logo { 
-            opacity: 0; 
-            transform: scale(0.9);
+        .read-more-btn:hover {
+            color: var(--text-primary);
         }
 
-        /* Redesigned Workflow Essentials Section Styles */
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(11, 49, 54, 0.8); 
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-title {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Workflow Essentials (Tools) Section - Clean Light Theme */
         .tools-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -365,9 +473,8 @@
         
         .tool-category-card:hover {
             border-color: var(--border-hover);
-            background-color: var(--bg-card-hover);
+            box-shadow: 0 10px 25px rgba(18, 124, 118, 0.08);
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .category-header {
@@ -378,8 +485,8 @@
 
         .category-title {
             font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-main);
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
         .tools-list {
@@ -394,33 +501,31 @@
             align-items: center;
             text-align: center;
             gap: 10px;
-            transition: var(--transition-smooth);
-        }
-
-        .tool-item:hover {
-            transform: translateY(-3px);
         }
 
         .tool-icon {
             width: 32px;
             height: 32px;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
         }
 
         .tool-name {
             font-size: 0.75rem;
             color: var(--text-muted);
             line-height: 1.2;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .navbar { padding: 20px 5%; }
-            .hero-section { flex-direction: column-reverse; text-align: center; padding: 60px 20px; gap: 40px; }
-            .hero-profile { flex: auto; width: 100%; max-width: 300px; }
-            .hero-name { font-size: 3.5rem; }
+            .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
+            .hero-greeting { font-size: 2.8rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-desc { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero-profile { flex: auto; width: 100%; max-width: 350px; }
+            .hero-circle-bg { width: 350px; height: 350px; }
             
             .menu-toggle { display: flex; }
             .nav-links { 
@@ -428,8 +533,7 @@
                 top: 100%; 
                 left: 0; 
                 width: 100%; 
-                background: rgba(10, 11, 26, 0.98); 
-                backdrop-filter: blur(15px);
+                background: #ffffff; 
                 flex-direction: column; 
                 align-items: center; 
                 gap: 0; 
@@ -438,9 +542,9 @@
                 overflow: hidden;
                 transition: max-height 0.4s ease;
             }
-            .nav-links.active { max-height: 350px; }
+            .nav-links.active { max-height: 400px; }
             .nav-links li { width: 100%; text-align: center; }
-            .nav-links li a { display: block; padding: 20px; border-top: 1px solid var(--border-color); }
+            .nav-links li a, .btn-nav { display: block; padding: 20px; border-radius: 0; background: transparent; color: var(--text-primary) !important; border-top: 1px solid var(--border-color); }
             
             .services-grid { grid-template-columns: 1fr; }
             .section-container { padding: 80px 20px; }
@@ -450,19 +554,18 @@
         
         @media (max-width: 600px) {
             .partners-grid { grid-template-columns: 1fr; }
-            .partner-card { height: 180px; }
+            .hero-circle-bg { width: 280px; height: 280px; }
+            .hero-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <!-- Minimalist Navigation -->
+    <!-- Navbar -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
-            <div class="logo-icon"></div>
-            <span>Jhon Joshua Cacho</span>
+            <span>MDF</span> <!-- Kept logo style from the first image -->
         </div>
         
-        <!-- Mobile Hamburger Button -->
         <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -474,22 +577,27 @@
             <li><a href="#clients" onclick="toggleMenu()">Clients</a></li>
             <li><a href="#tools" onclick="toggleMenu()">Tools</a></li>
             <li><a href="#accolades" onclick="toggleMenu()">Accolades</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="#contact" class="btn-nav" onclick="toggleMenu()">LET'S TALK</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-name">Josh Cacho</h1>
+            <h1 class="hero-greeting">Hello, I'm <span>Josh Cacho</span></h1>
             <p class="hero-title">Administrative Professional</p>
             <p class="hero-desc">I take care of the heavy lifting so you can breathe easier. With a strong focus on problem-solving, I streamline your quotations, manage revenue tracking, and run your daily office admin—so you can win back your time and peace of mind.</p>
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
             
-            <button class="btn-work" onclick="window.location.href='#contact'">Let's work together</button>
+            <div class="hero-buttons">
+                <!-- Replaced "Learn More" and "Contact Us" with requested text -->
+                <button class="btn-outline" onclick="window.location.href='#services'">Let's work together</button>
+                <button class="btn-filled" onclick="window.location.href='#contact'">Let's work together</button>
+            </div>
         </div>
 
         <div class="hero-profile">
+            <div class="hero-circle-bg"></div>
             <img src="profile.jpeg" alt="Portrait of Josh Cacho" class="profile-img">
         </div>
     </section>
@@ -501,57 +609,81 @@
         
         <div class="services-grid">
             <div class="service-card">
-                <h3 class="card-title">Quotation | Invoices</h3>
-                <p class="card-desc">Professional Quotation Management: Delivering accurate pricing, detailed scopes of work, and precise SKU documentation for seamless sales operations.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Resolve Cases & Inquiries</div>
-                <div class="pill">Generate & Negotiate Proposals</div>
-                <div class="pill">Document Interactions</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">Quotation | Invoices</h3>
+                    <p class="card-desc">Professional Quotation Management: Delivering accurate pricing, detailed scopes of work, and precise SKU documentation for seamless sales operations.</p>
+                    <div class="service-descriptions">
+                        <p>Resolve Cases & Inquiries</p>
+                        <p>Generate & Negotiate Proposals</p>
+                        <p>Document Interactions</p>
+                    </div>
+                </div>
             </div>
 
             <div class="service-card">
-                <h3 class="card-title">Account Management</h3>
-                <p class="card-desc">Proactive | Serving as a dedicated point of contact to maintain client relationships, handle inquiries, and ensure seamless communication and operational consistency.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Documentation & Negotiation</div>
-                <div class="pill">Investigate & Update</div>
-                <div class="pill">Sales & Subscriptions</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">Account Management</h3>
+                    <p class="card-desc">Proactive | Serving as a dedicated point of contact to maintain client relationships, handle inquiries, and ensure seamless communication and operational consistency.</p>
+                    <div class="service-descriptions">
+                        <p>Documentation & Negotiation</p>
+                        <p>Investigate & Update</p>
+                        <p>Sales & Subscriptions</p>
+                    </div>
+                </div>
             </div>
 
             <div class="service-card">
-                <h3 class="card-title">Inside Sales</h3>
-                <p class="card-desc">Managing sales pipeline by coordinating high-value meetings, ensuring calendar efficiency, and maintaining seamless communication from initial contact to discovery.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Manage Leads & Sales Pipeline</div>
-                <div class="pill">Resolved General Inquiries</div>
-                <div class="pill">Maintain Communications & Data</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">Inside Sales</h3>
+                    <p class="card-desc">Managing sales pipeline by coordinating high-value meetings, ensuring calendar efficiency, and maintaining seamless communication from initial contact to discovery.</p>
+                    <div class="service-descriptions">
+                        <p>Manage Leads & Sales Pipeline</p>
+                        <p>Resolved General Inquiries</p>
+                        <p>Maintain Communications & Data</p>
+                    </div>
+                </div>
             </div>
 
             <div class="service-card">
-                <h3 class="card-title">Customer Service</h3>
-                <p class="card-desc">Experienced customer service representative focused on providing efficient support, building customer relationships, and maintaining high service standards.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Manage Inbound\Outbound calls</div>
-                <div class="pill">Problem-Solving</div>
-                <div class="pill">Customer Relationship Management</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">Customer Service</h3>
+                    <p class="card-desc">Experienced customer service representative focused on providing efficient support, building customer relationships, and maintaining high service standards.</p>
+                    <div class="service-descriptions">
+                        <p>Manage Inbound\Outbound calls</p>
+                        <p>Problem-Solving</p>
+                        <p>Customer Relationship Management</p>
+                    </div>
+                </div>
             </div>
 
             <div class="service-card">
-                <h3 class="card-title">Executive Assistant</h3>
-                <p class="card-desc">Experienced in managing schedules, coordinating meetings, handling correspondence, and providing efficient support to executives to ensure smooth business operations.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Calendar and Schedule Management</div>
-                <div class="pill">Organization and Multitasking</div>
-                <div class="pill">Administrative Support</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">Executive Assistant</h3>
+                    <p class="card-desc">Experienced in managing schedules, coordinating meetings, handling correspondence, and providing efficient support to executives to ensure smooth business operations.</p>
+                    <div class="service-descriptions">
+                        <p>Calendar and Schedule Management</p>
+                        <p>Organization and Multitasking</p>
+                        <p>Administrative Support</p>
+                    </div>
+                </div>
             </div>
 
             <div class="service-card">
-                <h3 class="card-title">AI Specialist</h3>
-                <p class="card-desc">Skilled in using AI tools, analyzing data, developing effective prompts, and implementing AI-driven solutions to increase productivity, efficiency, and innovation across organizational functions.</p>
-                <div class="card-divider"></div>
-                <div class="pill">Generative AI Tools</div>
-                <div class="pill">Data Visualization & Reporting</div>
-                <div class="pill">Research & Information Synthesis</div>
+                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <div class="service-content">
+                    <h3 class="card-title">AI Specialist</h3>
+                    <p class="card-desc">Skilled in using AI tools, analyzing data, developing effective prompts, and implementing AI-driven solutions to increase productivity, efficiency, and innovation across organizational functions.</p>
+                    <div class="service-descriptions">
+                        <p>Generative AI Tools</p>
+                        <p>Data Visualization & Reporting</p>
+                        <p>Research & Information Synthesis</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -562,25 +694,72 @@
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
         
         <div class="partners-grid">
-            <div class="partner-card"><img src="iopex.png" alt="iOPEX" class="partner-logo"><div class="partner-desc">Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.</div></div>
-            <div class="partner-card"><img src="sse.png" alt="SSE" class="partner-logo"><div class="partner-desc">Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.</div></div>
-            <div class="partner-card"><img src="incharge.png" alt="InCharge Energy" class="partner-logo"><div class="partner-desc">Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.</div></div>
-            <div class="partner-card"><img src="equifax.png" alt="Equifax" class="partner-logo"><div class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</div></div>
-            <div class="partner-card"><img src="foundever.png" alt="Foundever" class="partner-logo"><div class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</div></div>
-            <div class="partner-card"><img src="temu.png" alt="Temu" class="partner-logo"><div class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</div></div>
-            <div class="partner-card"><img src="ovo.png" alt="OVO Energy" class="partner-logo"><div class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</div></div>
-            <div class="partner-card"><img src="tdcx.png" alt="TDCX" class="partner-logo"><div class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</div></div>
+            <div class="partner-card">
+                <img src="iopex.png" alt="iOPEX" class="partner-logo">
+                <h3 class="partner-title">iOPEX</h3>
+                <button class="read-more-btn" onclick="openModal('iOPEX', 'Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="sse.png" alt="SSE" class="partner-logo">
+                <h3 class="partner-title">SSE</h3>
+                <button class="read-more-btn" onclick="openModal('SSE', 'Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
+                <h3 class="partner-title">InCharge Energy</h3>
+                <button class="read-more-btn" onclick="openModal('InCharge Energy', 'Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="equifax.png" alt="Equifax" class="partner-logo">
+                <h3 class="partner-title">Equifax</h3>
+                <button class="read-more-btn" onclick="openModal('Equifax', 'Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="foundever.png" alt="Foundever" class="partner-logo">
+                <h3 class="partner-title">Foundever</h3>
+                <button class="read-more-btn" onclick="openModal('Foundever', 'Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="temu.png" alt="Temu" class="partner-logo">
+                <h3 class="partner-title">Temu</h3>
+                <button class="read-more-btn" onclick="openModal('Temu', 'Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="ovo.png" alt="OVO Energy" class="partner-logo">
+                <h3 class="partner-title">OVO Energy</h3>
+                <button class="read-more-btn" onclick="openModal('OVO Energy', 'Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.')">READ MORE &rarr;</button>
+            </div>
+            
+            <div class="partner-card">
+                <img src="tdcx.png" alt="TDCX" class="partner-logo">
+                <h3 class="partner-title">TDCX</h3>
+                <button class="read-more-btn" onclick="openModal('TDCX', 'Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.')">READ MORE &rarr;</button>
+            </div>
         </div>
     </section>
 
-    <!-- Workflow Essentials (Tools) Section - Redesigned Dashboard -->
+    <!-- Modal for Strategic Partnerships -->
+    <div id="partnerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Company Name</h2>
+            <p class="modal-desc" id="modalDesc">Description goes here.</p>
+        </div>
+    </div>
+
+    <!-- Workflow Essentials (Tools) Section -->
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
 
         <div class="tools-grid">
             
-            <!-- Communication & Messaging -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Communication & Messaging</h3>
@@ -595,7 +774,6 @@
                 </div>
             </div>
 
-            <!-- Meetings & Video Conferencing -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Meetings & Conferencing</h3>
@@ -607,7 +785,6 @@
                 </div>
             </div>
 
-            <!-- Productivity & Office Suite -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Productivity & Office Suite</h3>
@@ -624,7 +801,6 @@
                 </div>
             </div>
 
-            <!-- Calendar & Scheduling -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Calendar & Scheduling</h3>
@@ -635,7 +811,6 @@
                 </div>
             </div>
 
-            <!-- Cloud Storage & Collaboration -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Storage & Collaboration</h3>
@@ -647,7 +822,6 @@
                 </div>
             </div>
 
-            <!-- AI Assistants & LLMs -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">AI Assistants & LLMs</h3>
@@ -660,7 +834,6 @@
                 </div>
             </div>
 
-            <!-- Design & Social Media -->
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Design & Social Media</h3>
@@ -682,6 +855,28 @@
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
+        }
+
+        // Modal Functions for Strategic Partnerships
+        const modal = document.getElementById("partnerModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDesc = document.getElementById("modalDesc");
+
+        function openModal(title, description) {
+            modalTitle.textContent = title;
+            modalDesc.textContent = description;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
         }
     </script>
 </body>
