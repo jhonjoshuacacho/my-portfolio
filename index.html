@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
         /* Light Theme Palette & Variables */
@@ -20,6 +20,7 @@
             /* Buttons & Borders */
             --btn-filled: #127c76;
             --btn-filled-hover: #0d5e59;
+            --btn-light: #1ea69e; /* Added lighter tone for the chessboard pattern */
             --border-color: #d1e3e5;
             --border-hover: #127c76;
             
@@ -39,7 +40,6 @@
 
         body { 
             font-family: 'Outfit', sans-serif; 
-            /* Gradient background matching the 2nd image */
             background: linear-gradient(135deg, #e2f1f2 0%, #ffffff 100%);
             color: var(--text-muted);
             line-height: 1.6;
@@ -137,7 +137,7 @@
             display: flex; 
             align-items: center; 
             padding: 60px 5% 0 5%; 
-            max-width: 1500px; /* Made spacing much wider */
+            max-width: 1500px; 
             margin: 0 auto; 
             gap: 40px; 
             min-height: 85vh; 
@@ -151,25 +151,26 @@
         }
 
         .hero-greeting {
+            font-family: 'Playfair Display', serif; /* Matched from reference */
             font-size: 3.8rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-dark);
             line-height: 1.2;
             margin-bottom: 5px;
-            white-space: nowrap; /* Forces name to stay on 1 line */
+            white-space: nowrap; 
         }
 
         .hero-greeting span {
             color: var(--text-primary);
-            font-weight: 600;
         }
 
         .hero-title { 
+            font-family: 'Playfair Display', serif; /* Matched from reference */
             font-size: 2.8rem; 
             color: var(--text-primary); 
             margin-bottom: 25px; 
             font-weight: 600;
-            white-space: nowrap; /* Forces title to stay on 1 line */
+            white-space: nowrap; 
         }
 
         .hero-desc { 
@@ -211,10 +212,10 @@
         }
 
         .hero-profile { 
-            flex: 1.2; /* Widened profile section */
+            flex: 1.2; 
             display: flex; 
             justify-content: center;
-            align-items: flex-end; 
+            align-items: center; 
             position: relative;
             z-index: 2;
             min-height: 600px;
@@ -222,11 +223,10 @@
 
         .hero-circle-bg {
             position: absolute;
-            width: 650px; /* Scaled up to match reference */
-            height: 650px;
+            width: 450px; /* Reduced to match reference */
+            height: 450px;
             border-radius: 50%;
-            background-color: transparent; /* Solid ring instead of filled circle */
-            border: 70px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.4); /* Made it a solid fill like the reference */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -235,30 +235,30 @@
 
         .profile-img { 
             width: 100%; 
-            max-width: 650px;
+            max-width: 450px; /* Adjusted size to accurately fit the page flow */
             position: relative;
             z-index: 1;
             object-fit: contain;
-            transform: scale(1.15) translateY(20px); /* Bumps up the size to match reference proportions */
         }
 
         /* Common Section Styles */
         .section-container { 
             padding: 120px 5%; 
-            max-width: 1500px; /* Widened to match the rest of the site */
+            max-width: 1500px; 
             margin: 0 auto; 
             text-align: center; 
         }
 
         .section-title { 
-            font-size: 2.2rem; 
+            font-family: 'Playfair Display', serif; /* Matched from reference */
+            font-size: 2.8rem; 
             margin-bottom: 15px; 
             font-weight: 600; 
             color: var(--text-dark);
         }
 
         .section-subtitle { 
-            font-size: 1rem; 
+            font-size: 1.1rem; 
             color: var(--text-muted); 
             margin-bottom: 60px; 
             font-weight: 400;
@@ -337,7 +337,7 @@
             margin: 0;
         }
 
-        /* Strategic Partnerships Section - Flip Cards */
+        /* Strategic Partnerships Section - Flip Cards with Chessboard */
         .partners-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -376,8 +376,45 @@
             align-items: center;
             justify-content: center;
             padding: 25px;
-            background-color: var(--btn-filled);
+            background-color: var(--btn-filled); /* Default dark tone */
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Chessboard Logic */
+        /* Desktop (4 Columns) -> 1(D), 2(L), 3(D), 4(L) | 5(L), 6(D), 7(L), 8(D) */
+        @media (min-width: 901px) {
+            .partner-card-container:nth-child(2) .partner-card-front,
+            .partner-card-container:nth-child(4) .partner-card-front,
+            .partner-card-container:nth-child(5) .partner-card-front,
+            .partner-card-container:nth-child(7) .partner-card-front,
+            .partner-card-container:nth-child(2) .partner-card-back,
+            .partner-card-container:nth-child(4) .partner-card-back,
+            .partner-card-container:nth-child(5) .partner-card-back,
+            .partner-card-container:nth-child(7) .partner-card-back {
+                background-color: var(--btn-light);
+            }
+        }
+        
+        /* Tablet (2 Columns) -> 1(D), 2(L) | 3(L), 4(D) | 5(D), 6(L) | 7(L), 8(D) */
+        @media (max-width: 900px) and (min-width: 601px) {
+            .partner-card-container:nth-child(2) .partner-card-front,
+            .partner-card-container:nth-child(3) .partner-card-front,
+            .partner-card-container:nth-child(6) .partner-card-front,
+            .partner-card-container:nth-child(7) .partner-card-front,
+            .partner-card-container:nth-child(2) .partner-card-back,
+            .partner-card-container:nth-child(3) .partner-card-back,
+            .partner-card-container:nth-child(6) .partner-card-back,
+            .partner-card-container:nth-child(7) .partner-card-back {
+                background-color: var(--btn-light);
+            }
+        }
+
+        /* Mobile (1 Column) -> Simple Alternate */
+        @media (max-width: 600px) {
+            .partner-card-container:nth-child(even) .partner-card-front,
+            .partner-card-container:nth-child(even) .partner-card-back {
+                background-color: var(--btn-light);
+            }
         }
 
         .partner-card-front {
@@ -385,31 +422,21 @@
         }
 
         .partner-logo { 
-            max-width: 80px; 
-            max-height: 80px; 
+            max-width: 75%; /* Made logos much bigger */
+            max-height: 75%; 
             object-fit: contain; 
-            margin-bottom: 20px;
             filter: brightness(0) invert(1);
-        }
-
-        .partner-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .partner-card-back {
             transform: rotateY(180deg);
-            background-color: var(--btn-filled-hover);
         }
 
         .partner-desc {
             color: #ffffff;
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.6;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         /* Workflow Essentials (Tools) Section */
@@ -424,8 +451,11 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 30px;
+            padding: 0; /* Padding moved to children to allow full-width header */
+            overflow: hidden;
             transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
         }
         
         .tool-category-card:hover {
@@ -435,9 +465,10 @@
         }
 
         .category-header {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
+            background-color: #d1e3e5; /* Matched with image placeholder */
+            padding: 15px 25px;
+            margin-bottom: 0;
+            text-align: center;
         }
 
         .category-title {
@@ -450,6 +481,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             gap: 20px 15px;
+            padding: 30px 25px;
+            flex-grow: 1;
         }
 
         .tool-item {
@@ -477,11 +510,10 @@
         @media (max-width: 1024px) {
             .hero-greeting { font-size: 3rem; white-space: normal; }
             .hero-title { font-size: 2.2rem; white-space: normal; }
-            .hero-circle-bg { width: 500px; height: 500px; }
             .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
             .hero-content { padding-bottom: 0; }
             .hero-buttons { justify-content: center; }
-            .hero-profile { width: 100%; max-width: 500px; }
+            .hero-profile { width: 100%; max-width: 500px; min-height: 400px; }
         }
 
         @media (max-width: 900px) {
@@ -513,13 +545,12 @@
         
         @media (max-width: 600px) {
             .partners-grid { grid-template-columns: 1fr; }
-            .hero-circle-bg { width: 320px; height: 320px; border-width: 40px; }
+            .hero-circle-bg { width: 320px; height: 320px; }
             .hero-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
             <img src="profile.jpeg" alt="Josh Cacho Profile" class="logo-img">
@@ -541,7 +572,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-greeting">Hello, I'm <span>Josh Cacho</span></h1>
@@ -556,11 +586,10 @@
 
         <div class="hero-profile">
             <div class="hero-circle-bg"></div>
-            <img src="profile.jpeg" alt="Portrait of Josh Cacho" class="profile-img">
+            <img src="profile.png" alt="Portrait of Josh Cacho" class="profile-img">
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="section-container">
         <h2 class="section-title">What I do</h2>
         <p class="section-subtitle">Seamless Support. Proven Reliability. Total Peace of Mind.</p>
@@ -646,7 +675,6 @@
         </div>
     </section>
 
-    <!-- Strategic Partnerships Section -->
     <section id="clients" class="section-container">
         <h2 class="section-title">Strategic Partnerships</h2>
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
@@ -656,7 +684,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="iopex.png" alt="iOPEX" class="partner-logo">
-                        <h3 class="partner-title">iOPEX</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.</p>
@@ -668,7 +695,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="sse.png" alt="SSE" class="partner-logo">
-                        <h3 class="partner-title">SSE</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.</p>
@@ -680,7 +706,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
-                        <h3 class="partner-title">InCharge Energy</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.</p>
@@ -692,7 +717,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="equifax.png" alt="Equifax" class="partner-logo">
-                        <h3 class="partner-title">Equifax</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
@@ -704,7 +728,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="foundever.png" alt="Foundever" class="partner-logo">
-                        <h3 class="partner-title">Foundever</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</p>
@@ -716,7 +739,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="temu.png" alt="Temu" class="partner-logo">
-                        <h3 class="partner-title">Temu</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</p>
@@ -728,7 +750,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="ovo.png" alt="OVO Energy" class="partner-logo">
-                        <h3 class="partner-title">OVO Energy</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</p>
@@ -740,7 +761,6 @@
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
                         <img src="tdcx.png" alt="TDCX" class="partner-logo">
-                        <h3 class="partner-title">TDCX</h3>
                     </div>
                     <div class="partner-card-back">
                         <p class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</p>
@@ -750,7 +770,6 @@
         </div>
     </section>
 
-    <!-- Workflow Essentials (Tools) Section -->
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
