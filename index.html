@@ -6,17 +6,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Josh Cacho - Portfolio</title>
     <style>
-        /* Light Theme Palette & Variables based on provided images */
+        /* Light Theme Palette & Variables */
         :root {
             /* Backgrounds */
-            --bg-main: #e2f1f2; /* Light pale blue/cyan */
+            --bg-nav: rgba(255, 255, 255, 0.8);
             --bg-card: #ffffff;
-            --bg-nav: rgba(226, 241, 242, 0.95);
             
             /* Typography */
-            --text-dark: #0b3136; /* Deep dark slate for headings */
-            --text-primary: #127c76; /* Dark teal for highlights/titles */
-            --text-muted: #5e767a; /* Muted slate for body text */
+            --text-dark: #0b3136;
+            --text-primary: #127c76;
+            --text-muted: #5e767a;
             
             /* Buttons & Borders */
             --btn-filled: #127c76;
@@ -40,10 +39,12 @@
 
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: var(--bg-main); 
+            /* Gradient background matching the 2nd image */
+            background: linear-gradient(135deg, #e2f1f2 0%, #ffffff 100%);
             color: var(--text-muted);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
         /* Navbar Styles */
@@ -58,6 +59,7 @@
             position: sticky; 
             top: 0; 
             z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .logo-container { 
@@ -67,11 +69,20 @@
             z-index: 1001;
         }
 
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
         .logo-container span {
             font-weight: 700;
             letter-spacing: 0.5px;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--text-dark);
+            text-transform: uppercase;
         }
 
         .nav-links { 
@@ -99,11 +110,11 @@
             padding: 10px 24px;
             border-radius: 4px;
             font-weight: 600 !important;
+            transition: var(--transition-smooth);
         }
 
         .btn-nav:hover {
             background-color: var(--btn-filled-hover);
-            color: #ffffff !important;
         }
 
         .menu-toggle {
@@ -180,22 +191,6 @@
             gap: 15px;
         }
 
-        .btn-outline { 
-            background-color: transparent; 
-            color: var(--text-primary); 
-            padding: 14px 32px; 
-            border: 2px solid var(--text-primary); 
-            border-radius: 4px; 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: var(--transition-smooth); 
-        }
-
-        .btn-outline:hover { 
-            background-color: rgba(18, 124, 118, 0.1); 
-        }
-
         .btn-filled {
             background-color: var(--btn-filled); 
             color: #ffffff; 
@@ -237,7 +232,7 @@
 
         .profile-img { 
             width: 100%; 
-            border-radius: 8px;
+            /* Assuming the user uses a PNG with a removed background */
             position: relative;
             z-index: 1;
         }
@@ -264,7 +259,7 @@
             font-weight: 400;
         }
 
-        /* Services Section (What I Do) - Matching 2nd Image */
+        /* Services Section (What I Do) */
         .services-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -290,7 +285,7 @@
         .service-img-placeholder {
             width: 100%;
             height: 180px;
-            background-color: #d1e3e5; /* Placeholder color for future images */
+            background-color: #d1e3e5;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -321,7 +316,6 @@
             font-weight: 400;
         }
 
-        /* Replaced buttons with organized text descriptions */
         .service-descriptions {
             margin-top: auto;
             border-top: 1px solid var(--border-color);
@@ -338,124 +332,84 @@
             margin: 0;
         }
 
-        /* Strategic Partnerships Section - Matching 3rd Image */
+        /* Strategic Partnerships Section - Flip Cards */
         .partners-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
         }
 
-        .partner-card { 
-            background-color: var(--bg-card); 
-            border: 1px solid var(--border-color);
-            aspect-ratio: 1 / 1; /* Creates the square shape */
-            display: flex; 
+        .partner-card-container {
+            background-color: transparent;
+            perspective: 1000px; /* Provides 3D perspective */
+            aspect-ratio: 1 / 1;
+        }
+
+        .partner-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        /* Flip Action on Hover/Click */
+        .partner-card-container:hover .partner-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .partner-card-front, .partner-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
             flex-direction: column;
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 40px 20px;
-            transition: var(--transition-smooth); 
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background-color: var(--btn-filled); /* Matches Let's Talk Button */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .partner-card:hover { 
-            border-color: var(--border-hover); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        .partner-card-front {
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .partner-logo { 
-            max-width: 60px; 
-            max-height: 60px; 
+            max-width: 80px; 
+            max-height: 80px; 
             object-fit: contain; 
             margin-bottom: 20px;
+            /* Invert colors to make logo white for dark teal background */
+            filter: brightness(0) invert(1);
         }
 
         .partner-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #ffffff;
             text-transform: uppercase;
-            text-align: center;
             letter-spacing: 1px;
-            margin-bottom: 20px;
         }
 
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-transform: uppercase;
-            transition: var(--transition-smooth);
+        .partner-card-back {
+            transform: rotateY(180deg);
+            background-color: var(--btn-filled-hover);
         }
 
-        .read-more-btn:hover {
-            color: var(--text-primary);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(11, 49, 54, 0.8); 
-            backdrop-filter: blur(5px);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            padding: 40px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            text-align: center;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-modal:hover {
-            color: var(--text-dark);
-        }
-
-        .modal-title {
-            color: var(--text-primary);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .modal-desc {
-            color: var(--text-muted);
+        .partner-desc {
+            color: #ffffff;
+            font-size: 0.95rem;
             line-height: 1.6;
-            font-size: 1rem;
+            font-weight: 400;
         }
 
-        /* Workflow Essentials (Tools) Section - Clean Light Theme */
+        /* Workflow Essentials (Tools) Section */
         .tools-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -563,7 +517,8 @@
     <!-- Navbar -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="logo-container">
-            <span>MDF</span> <!-- Kept logo style from the first image -->
+            <img src="profile.jpeg" alt="Josh Cacho Profile" class="logo-img">
+            <span>JOSH CACHO</span>
         </div>
         
         <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
@@ -590,14 +545,15 @@
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
             
             <div class="hero-buttons">
-                <!-- Replaced "Learn More" and "Contact Us" with requested text -->
-                <button class="btn-outline" onclick="window.location.href='#services'">Let's work together</button>
-                <button class="btn-filled" onclick="window.location.href='#contact'">Let's work together</button>
+                <!-- Single Call to Action Button remaining -->
+                <button class="btn-filled" onclick="window.location.href='#services'">Let's work together</button>
             </div>
         </div>
 
         <div class="hero-profile">
+            <!-- Background styling mimicking the 2nd image -->
             <div class="hero-circle-bg"></div>
+            <!-- Ensure this image is a PNG with removed background to stack properly over the gradient/circle -->
             <img src="profile.jpeg" alt="Portrait of Josh Cacho" class="profile-img">
         </div>
     </section>
@@ -688,70 +644,111 @@
         </div>
     </section>
 
-    <!-- Strategic Partnerships Section -->
+    <!-- Strategic Partnerships Section - Updated to Flip Cards -->
     <section id="clients" class="section-container">
         <h2 class="section-title">Strategic Partnerships</h2>
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
         
         <div class="partners-grid">
-            <div class="partner-card">
-                <img src="iopex.png" alt="iOPEX" class="partner-logo">
-                <h3 class="partner-title">iOPEX</h3>
-                <button class="read-more-btn" onclick="openModal('iOPEX', 'Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.')">READ MORE &rarr;</button>
+            
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="iopex.png" alt="iOPEX" class="partner-logo">
+                        <h3 class="partner-title">iOPEX</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="sse.png" alt="SSE" class="partner-logo">
-                <h3 class="partner-title">SSE</h3>
-                <button class="read-more-btn" onclick="openModal('SSE', 'Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="sse.png" alt="SSE" class="partner-logo">
+                        <h3 class="partner-title">SSE</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
-                <h3 class="partner-title">InCharge Energy</h3>
-                <button class="read-more-btn" onclick="openModal('InCharge Energy', 'Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
+                        <h3 class="partner-title">InCharge Energy</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="equifax.png" alt="Equifax" class="partner-logo">
-                <h3 class="partner-title">Equifax</h3>
-                <button class="read-more-btn" onclick="openModal('Equifax', 'Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="equifax.png" alt="Equifax" class="partner-logo">
+                        <h3 class="partner-title">Equifax</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="foundever.png" alt="Foundever" class="partner-logo">
-                <h3 class="partner-title">Foundever</h3>
-                <button class="read-more-btn" onclick="openModal('Foundever', 'Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="foundever.png" alt="Foundever" class="partner-logo">
+                        <h3 class="partner-title">Foundever</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="temu.png" alt="Temu" class="partner-logo">
-                <h3 class="partner-title">Temu</h3>
-                <button class="read-more-btn" onclick="openModal('Temu', 'Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="temu.png" alt="Temu" class="partner-logo">
+                        <h3 class="partner-title">Temu</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="ovo.png" alt="OVO Energy" class="partner-logo">
-                <h3 class="partner-title">OVO Energy</h3>
-                <button class="read-more-btn" onclick="openModal('OVO Energy', 'Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="ovo.png" alt="OVO Energy" class="partner-logo">
+                        <h3 class="partner-title">OVO Energy</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card">
-                <img src="tdcx.png" alt="TDCX" class="partner-logo">
-                <h3 class="partner-title">TDCX</h3>
-                <button class="read-more-btn" onclick="openModal('TDCX', 'Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.')">READ MORE &rarr;</button>
+            <div class="partner-card-container">
+                <div class="partner-card-inner">
+                    <div class="partner-card-front">
+                        <img src="tdcx.png" alt="TDCX" class="partner-logo">
+                        <h3 class="partner-title">TDCX</h3>
+                    </div>
+                    <div class="partner-card-back">
+                        <p class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</p>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
-
-    <!-- Modal for Strategic Partnerships -->
-    <div id="partnerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 class="modal-title" id="modalTitle">Company Name</h2>
-            <p class="modal-desc" id="modalDesc">Description goes here.</p>
-        </div>
-    </div>
 
     <!-- Workflow Essentials (Tools) Section -->
     <section id="tools" class="section-container">
@@ -855,28 +852,6 @@
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
-        }
-
-        // Modal Functions for Strategic Partnerships
-        const modal = document.getElementById("partnerModal");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalDesc = document.getElementById("modalDesc");
-
-        function openModal(title, description) {
-            modalTitle.textContent = title;
-            modalDesc.textContent = description;
-            modal.style.display = "flex";
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        // Close modal when clicking outside of the modal content
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
         }
     </script>
 </body>
