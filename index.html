@@ -136,26 +136,27 @@
         .hero-section { 
             display: flex; 
             align-items: center; 
-            padding: 80px 5%; 
-            max-width: 1200px; 
+            padding: 60px 5% 0 5%; 
+            max-width: 1500px; /* Made spacing much wider */
             margin: 0 auto; 
-            gap: 60px; 
+            gap: 40px; 
             min-height: 85vh; 
             position: relative;
-            overflow: hidden;
         }
 
         .hero-content { 
             flex: 1; 
             z-index: 2;
+            padding-bottom: 60px;
         }
 
         .hero-greeting {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 500;
             color: var(--text-dark);
             line-height: 1.2;
             margin-bottom: 5px;
+            white-space: nowrap; /* Forces name to stay on 1 line */
         }
 
         .hero-greeting span {
@@ -164,10 +165,11 @@
         }
 
         .hero-title { 
-            font-size: 2.5rem; 
+            font-size: 2.8rem; 
             color: var(--text-primary); 
             margin-bottom: 25px; 
             font-weight: 600;
+            white-space: nowrap; /* Forces title to stay on 1 line */
         }
 
         .hero-desc { 
@@ -209,21 +211,22 @@
         }
 
         .hero-profile { 
-            flex: 0 0 450px; 
+            flex: 1.2; /* Widened profile section */
             display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+            justify-content: center;
+            align-items: flex-end; 
             position: relative;
             z-index: 2;
+            min-height: 600px;
         }
 
         .hero-circle-bg {
             position: absolute;
-            width: 450px;
-            height: 450px;
+            width: 650px; /* Scaled up to match reference */
+            height: 650px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.4);
-            border: 50px solid rgba(255, 255, 255, 0.2);
+            background-color: transparent; /* Solid ring instead of filled circle */
+            border: 70px solid rgba(255, 255, 255, 0.4);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -232,15 +235,17 @@
 
         .profile-img { 
             width: 100%; 
-            /* Assuming the user uses a PNG with a removed background */
+            max-width: 650px;
             position: relative;
             z-index: 1;
+            object-fit: contain;
+            transform: scale(1.15) translateY(20px); /* Bumps up the size to match reference proportions */
         }
 
         /* Common Section Styles */
         .section-container { 
-            padding: 100px 5%; 
-            max-width: 1200px; 
+            padding: 120px 5%; 
+            max-width: 1500px; /* Widened to match the rest of the site */
             margin: 0 auto; 
             text-align: center; 
         }
@@ -335,13 +340,13 @@
         /* Strategic Partnerships Section - Flip Cards */
         .partners-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
         }
 
         .partner-card-container {
             background-color: transparent;
-            perspective: 1000px; /* Provides 3D perspective */
+            perspective: 1000px;
             aspect-ratio: 1 / 1;
         }
 
@@ -355,7 +360,6 @@
             cursor: pointer;
         }
 
-        /* Flip Action on Hover/Click */
         .partner-card-container:hover .partner-card-inner {
             transform: rotateY(180deg);
         }
@@ -364,7 +368,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             border-radius: 8px;
             display: flex;
@@ -372,7 +376,7 @@
             align-items: center;
             justify-content: center;
             padding: 25px;
-            background-color: var(--btn-filled); /* Matches Let's Talk Button */
+            background-color: var(--btn-filled);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
@@ -385,7 +389,6 @@
             max-height: 80px; 
             object-fit: contain; 
             margin-bottom: 20px;
-            /* Invert colors to make logo white for dark teal background */
             filter: brightness(0) invert(1);
         }
 
@@ -471,16 +474,18 @@
         }
 
         /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .hero-greeting { font-size: 3rem; white-space: normal; }
+            .hero-title { font-size: 2.2rem; white-space: normal; }
+            .hero-circle-bg { width: 500px; height: 500px; }
+            .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
+            .hero-content { padding-bottom: 0; }
+            .hero-buttons { justify-content: center; }
+            .hero-profile { width: 100%; max-width: 500px; }
+        }
+
         @media (max-width: 900px) {
             .navbar { padding: 20px 5%; }
-            .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
-            .hero-greeting { font-size: 2.8rem; }
-            .hero-title { font-size: 2rem; }
-            .hero-desc { max-width: 100%; }
-            .hero-buttons { justify-content: center; }
-            .hero-profile { flex: auto; width: 100%; max-width: 350px; }
-            .hero-circle-bg { width: 350px; height: 350px; }
-            
             .menu-toggle { display: flex; }
             .nav-links { 
                 position: absolute; 
@@ -508,7 +513,7 @@
         
         @media (max-width: 600px) {
             .partners-grid { grid-template-columns: 1fr; }
-            .hero-circle-bg { width: 280px; height: 280px; }
+            .hero-circle-bg { width: 320px; height: 320px; border-width: 40px; }
             .hero-buttons { flex-direction: column; }
         }
     </style>
@@ -545,15 +550,12 @@
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
             
             <div class="hero-buttons">
-                <!-- Single Call to Action Button remaining -->
                 <button class="btn-filled" onclick="window.location.href='#services'">Let's work together</button>
             </div>
         </div>
 
         <div class="hero-profile">
-            <!-- Background styling mimicking the 2nd image -->
             <div class="hero-circle-bg"></div>
-            <!-- Ensure this image is a PNG with removed background to stack properly over the gradient/circle -->
             <img src="profile.jpeg" alt="Portrait of Josh Cacho" class="profile-img">
         </div>
     </section>
@@ -644,13 +646,12 @@
         </div>
     </section>
 
-    <!-- Strategic Partnerships Section - Updated to Flip Cards -->
+    <!-- Strategic Partnerships Section -->
     <section id="clients" class="section-container">
         <h2 class="section-title">Strategic Partnerships</h2>
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
         
         <div class="partners-grid">
-            
             <div class="partner-card-container">
                 <div class="partner-card-inner">
                     <div class="partner-card-front">
@@ -746,7 +747,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -756,7 +756,6 @@
         <p class="section-subtitle">Essential software and systems I utilize daily.</p>
 
         <div class="tools-grid">
-            
             <div class="tool-category-card">
                 <div class="category-header">
                     <h3 class="category-title">Communication & Messaging</h3>
@@ -843,7 +842,6 @@
                     <div class="tool-item"><img src="twitter.png" alt="Twitter (X)" class="tool-icon"><span class="tool-name">Twitter (X)</span></div>
                 </div>
             </div>
-
         </div>
     </section>
 
