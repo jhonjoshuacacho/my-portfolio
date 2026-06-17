@@ -20,7 +20,7 @@
             /* Buttons & Borders */
             --btn-filled: #127c76;
             --btn-filled-hover: #0d5e59;
-            --btn-light: #1ea69e; /* Added lighter tone for the chessboard pattern */
+            --btn-light: #1ea69e;
             --border-color: #d1e3e5;
             --border-hover: #127c76;
             
@@ -151,7 +151,7 @@
         }
 
         .hero-greeting {
-            font-family: 'Playfair Display', serif; /* Matched from reference */
+            font-family: 'Playfair Display', serif;
             font-size: 3.8rem;
             font-weight: 600;
             color: var(--text-dark);
@@ -165,7 +165,7 @@
         }
 
         .hero-title { 
-            font-family: 'Playfair Display', serif; /* Matched from reference */
+            font-family: 'Playfair Display', serif;
             font-size: 2.8rem; 
             color: var(--text-primary); 
             margin-bottom: 25px; 
@@ -223,10 +223,10 @@
 
         .hero-circle-bg {
             position: absolute;
-            width: 450px; /* Reduced to match reference */
+            width: 450px; 
             height: 450px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.4); /* Made it a solid fill like the reference */
+            background-color: rgba(255, 255, 255, 0.4); 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -235,7 +235,7 @@
 
         .profile-img { 
             width: 100%; 
-            max-width: 450px; /* Adjusted size to accurately fit the page flow */
+            max-width: 450px; 
             position: relative;
             z-index: 1;
             object-fit: contain;
@@ -250,7 +250,7 @@
         }
 
         .section-title { 
-            font-family: 'Playfair Display', serif; /* Matched from reference */
+            font-family: 'Playfair Display', serif;
             font-size: 2.8rem; 
             margin-bottom: 15px; 
             font-weight: 600; 
@@ -287,16 +287,11 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
-        .service-img-placeholder {
+        .service-img {
             width: 100%;
-            height: 180px;
-            background-color: #d1e3e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-weight: 500;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .service-content {
@@ -337,106 +332,68 @@
             margin: 0;
         }
 
-        /* Strategic Partnerships Section - Flip Cards with Chessboard */
+        /* Strategic Partnerships Section - Structured Interactive Grid */
         .partners-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 4px; /* Micro-gap for flush, structured look */
+            background-color: transparent;
         }
 
         .partner-card-container {
-            background-color: transparent;
-            perspective: 1000px;
-            aspect-ratio: 1 / 1;
-        }
-
-        .partner-card-inner {
             position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-            transform-style: preserve-3d;
+            aspect-ratio: 2 / 3;
+            overflow: hidden;
             cursor: pointer;
+            border-radius: 4px;
         }
 
-        .partner-card-container:hover .partner-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .partner-card-front, .partner-card-back {
-            position: absolute;
+        .partner-bg {
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            filter: grayscale(15%) brightness(0.9); /* Slightly desaturated default state */
+        }
+
+        .partner-card-container:hover .partner-bg {
+            transform: scale(1.05); /* Subtle zoom */
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .partner-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(18, 124, 118, 0.85); /* Semi-transparent overlay */
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px); /* Glassmorphism */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 25px;
-            background-color: var(--btn-filled); /* Default dark tone */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            justify-content: flex-start;
+            padding: 40px 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
         }
 
-        /* Responsive Chessboard Logic */
-        /* Desktop (4 Columns) -> 1(D), 2(L), 3(D), 4(L) | 5(L), 6(D), 7(L), 8(D) */
-        @media (min-width: 901px) {
-            .partner-card-container:nth-child(2) .partner-card-front,
-            .partner-card-container:nth-child(4) .partner-card-front,
-            .partner-card-container:nth-child(5) .partner-card-front,
-            .partner-card-container:nth-child(7) .partner-card-front,
-            .partner-card-container:nth-child(2) .partner-card-back,
-            .partner-card-container:nth-child(4) .partner-card-back,
-            .partner-card-container:nth-child(5) .partner-card-back,
-            .partner-card-container:nth-child(7) .partner-card-back {
-                background-color: var(--btn-light);
-            }
-        }
-        
-        /* Tablet (2 Columns) -> 1(D), 2(L) | 3(L), 4(D) | 5(D), 6(L) | 7(L), 8(D) */
-        @media (max-width: 900px) and (min-width: 601px) {
-            .partner-card-container:nth-child(2) .partner-card-front,
-            .partner-card-container:nth-child(3) .partner-card-front,
-            .partner-card-container:nth-child(6) .partner-card-front,
-            .partner-card-container:nth-child(7) .partner-card-front,
-            .partner-card-container:nth-child(2) .partner-card-back,
-            .partner-card-container:nth-child(3) .partner-card-back,
-            .partner-card-container:nth-child(6) .partner-card-back,
-            .partner-card-container:nth-child(7) .partner-card-back {
-                background-color: var(--btn-light);
-            }
-        }
-
-        /* Mobile (1 Column) -> Simple Alternate */
-        @media (max-width: 600px) {
-            .partner-card-container:nth-child(even) .partner-card-front,
-            .partner-card-container:nth-child(even) .partner-card-back {
-                background-color: var(--btn-light);
-            }
-        }
-
-        .partner-card-front {
-            border: 1px solid rgba(255,255,255,0.2);
+        .partner-card-container:hover .partner-overlay {
+            opacity: 1;
         }
 
         .partner-logo { 
-            max-width: 75%; /* Made logos much bigger */
-            max-height: 75%; 
+            max-width: 65%; 
+            max-height: 70px; 
             object-fit: contain; 
             filter: brightness(0) invert(1);
-        }
-
-        .partner-card-back {
-            transform: rotateY(180deg);
+            margin-bottom: 20px;
         }
 
         .partner-desc {
             color: #ffffff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         /* Workflow Essentials (Tools) Section */
@@ -451,7 +408,7 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0; /* Padding moved to children to allow full-width header */
+            padding: 0; 
             overflow: hidden;
             transition: var(--transition-smooth);
             display: flex;
@@ -465,7 +422,7 @@
         }
 
         .category-header {
-            background-color: #d1e3e5; /* Matched with image placeholder */
+            background-color: #d1e3e5; 
             padding: 15px 25px;
             margin-bottom: 0;
             text-align: center;
@@ -510,10 +467,13 @@
         @media (max-width: 1024px) {
             .hero-greeting { font-size: 3rem; white-space: normal; }
             .hero-title { font-size: 2.2rem; white-space: normal; }
+            
+            /* Visual Priority: Profile top, Content bottom */
             .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
-            .hero-content { padding-bottom: 0; }
+            .hero-profile { order: -1; width: 100%; max-width: 500px; min-height: 400px; }
+            .hero-content { order: 2; padding-bottom: 0; }
+            
             .hero-buttons { justify-content: center; }
-            .hero-profile { width: 100%; max-width: 500px; min-height: 400px; }
         }
 
         @media (max-width: 900px) {
@@ -539,12 +499,12 @@
             
             .services-grid { grid-template-columns: 1fr; }
             .section-container { padding: 80px 20px; }
-            .partners-grid { grid-template-columns: 1fr 1fr; }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
             .tools-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 600px) {
-            .partners-grid { grid-template-columns: 1fr; }
+            .partners-grid { grid-template-columns: 1fr; gap: 4px; }
             .hero-circle-bg { width: 320px; height: 320px; }
             .hero-buttons { flex-direction: column; }
         }
@@ -596,7 +556,7 @@
         
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="quotation.png" alt="Quotation Specialist" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">Quotation | Invoices</h3>
                     <p class="card-desc">Professional Quotation Management: Delivering accurate pricing, detailed scopes of work, and precise SKU documentation for seamless sales operations.</p>
@@ -609,7 +569,7 @@
             </div>
 
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="account-management.jpeg" alt="Account Management" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">Account Management</h3>
                     <p class="card-desc">Proactive | Serving as a dedicated point of contact to maintain client relationships, handle inquiries, and ensure seamless communication and operational consistency.</p>
@@ -622,7 +582,7 @@
             </div>
 
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="inside-sales.png" alt="Inside Sales" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">Inside Sales</h3>
                     <p class="card-desc">Managing sales pipeline by coordinating high-value meetings, ensuring calendar efficiency, and maintaining seamless communication from initial contact to discovery.</p>
@@ -635,7 +595,7 @@
             </div>
 
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="customer-service.png" alt="Customer Service" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">Customer Service</h3>
                     <p class="card-desc">Experienced customer service representative focused on providing efficient support, building customer relationships, and maintaining high service standards.</p>
@@ -648,7 +608,7 @@
             </div>
 
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="executive-assistant.jpeg" alt="Executive Assistant" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">Executive Assistant</h3>
                     <p class="card-desc">Experienced in managing schedules, coordinating meetings, handling correspondence, and providing efficient support to executives to ensure smooth business operations.</p>
@@ -661,7 +621,7 @@
             </div>
 
             <div class="service-card">
-                <div class="service-img-placeholder">[Image Placeholder]</div>
+                <img src="ai-specialist.png" alt="AI Specialist" class="service-img">
                 <div class="service-content">
                     <h3 class="card-title">AI Specialist</h3>
                     <p class="card-desc">Skilled in using AI tools, analyzing data, developing effective prompts, and implementing AI-driven solutions to increase productivity, efficiency, and innovation across organizational functions.</p>
@@ -681,90 +641,66 @@
         
         <div class="partners-grid">
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="iopex.png" alt="iOPEX" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.</p>
-                    </div>
+                <img src="ioPEX.jpg" alt="iOPEX Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="iopex.png" alt="iOPEX" class="partner-logo">
+                    <p class="partner-desc">Driven operational excellence across multiple Lines of Business by mentoring teams, authoring Standard Operating Procedures (SOPs), and leading high-priority campaigns and projects.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="sse.png" alt="SSE" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.</p>
-                    </div>
+                <img src="SSe.jpg" alt="SSE Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="sse.png" alt="SSE" class="partner-logo">
+                    <p class="partner-desc">Managed back-office financial operations, ensuring precise payment reconciliation and accurate transaction processing for utility customer accounts.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.</p>
-                    </div>
+                <img src="inchargE.jpg" alt="InCharge Energy Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
+                    <p class="partner-desc">Managed end-to-end sales operations and client relations, from lead generation and opportunity tracking to executing quotations, invoicing, and service contracts.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="equifax.png" alt="Equifax" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
-                    </div>
+                <img src="euifaX.jpg" alt="Equifax Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="equifax.png" alt="Equifax" class="partner-logo">
+                    <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="foundever.png" alt="Foundever" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</p>
-                    </div>
+                <img src="FoundEver.jpg" alt="Foundever Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="foundever.png" alt="Foundever" class="partner-logo">
+                    <p class="partner-desc">Executed full-scope back-office operations, seamlessly managing multi-channel communications (inbound/outbound), data analysis, and strategic research reporting.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="temu.png" alt="Temu" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</p>
-                    </div>
+                <img src="Temuu.jpg" alt="Temu Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="temu.png" alt="Temu" class="partner-logo">
+                    <p class="partner-desc">Specialized in high-quality, multi-channel chat support, efficiently resolving complex customer issues while managing concurrent inquiries and detailed investigations.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="ovo.png" alt="OVO Energy" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</p>
-                    </div>
+                <img src="ovoEnergy.jpg" alt="OVO Energy Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="ovo.png" alt="OVO Energy" class="partner-logo">
+                    <p class="partner-desc">Led back-office transaction processing and payment reconciliation for utility accounts with a strict focus on data accuracy.</p>
                 </div>
             </div>
             
             <div class="partner-card-container">
-                <div class="partner-card-inner">
-                    <div class="partner-card-front">
-                        <img src="tdcx.png" alt="TDCX" class="partner-logo">
-                    </div>
-                    <div class="partner-card-back">
-                        <p class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</p>
-                    </div>
+                <img src="Tdcx.jpg" alt="TDCX Background" class="partner-bg">
+                <div class="partner-overlay">
+                    <img src="tdcx.png" alt="TDCX" class="partner-logo">
+                    <p class="partner-desc">Provided peer mentorship while managing concurrent operational workflows, specializing in deep-dive data investigation, advanced analytics, and performance reporting.</p>
                 </div>
             </div>
         </div>
