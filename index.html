@@ -431,22 +431,12 @@
             font-weight: 400;
         }
 
-        /* Equifax Full Width Banner */
-        .equifax-banner {
-            width: 100%;
-            height: 400px;
-            background-image: url('euifaX.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            position: relative;
-        }
-
-        .equifax-banner::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(11, 49, 54, 0.6); /* Dark overlay to keep it elegant */
+        /* Recognition Section */
+        .recognition-section {
+            background-color: var(--bg-light-alt);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            min-height: 400px;
         }
 
         /* Tools Section */
@@ -514,14 +504,6 @@
             color: var(--text-muted);
             line-height: 1.2;
             font-weight: 500;
-        }
-
-        /* Recognition Section */
-        .recognition-section {
-            background-color: var(--bg-light-alt);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            min-height: 400px;
         }
 
         /* Contact Section */
@@ -690,7 +672,6 @@
             .hero-circle-bg { width: 320px; height: 320px; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn-filled, .btn-outlined { width: 100%; }
-            .equifax-banner { height: 250px; background-attachment: scroll; /* Disable parallax on small screens for performance */ }
         }
     </style>
 </head>
@@ -850,7 +831,7 @@
             </div>
             
             <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
-                <img src="equifaX.jpeg" alt="Equifax Background" class="partner-bg">
+                <img src="euifaX.jpeg" alt="Equifax Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="equifax.png" alt="Equifax" class="partner-logo">
                     <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
@@ -891,7 +872,9 @@
         </div>
     </section>
 
-    <section class="equifax-banner" aria-label="Equifax Featured Background"></section>
+    <section id="accolades" class="section-container recognition-section">
+        <h2 class="section-title">Recognition</h2>
+    </section>
 
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
@@ -986,10 +969,6 @@
             </div>
         </div>
     </section>
-
-    <section id="accolades" class="section-container recognition-section">
-        <h2 class="section-title">Recognition</h2>
-        </section>
 
     <section id="contact" class="section-container">
         <h2 class="section-title">Initiate a Collaboration</h2>
