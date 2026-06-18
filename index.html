@@ -11,6 +11,7 @@
             /* Backgrounds */
             --bg-nav: rgba(255, 255, 255, 0.8);
             --bg-card: #ffffff;
+            --bg-light-alt: #f4f8f9;
             
             /* Typography */
             --text-dark: #0b3136;
@@ -20,7 +21,6 @@
             /* Buttons & Borders */
             --btn-filled: #127c76;
             --btn-filled-hover: #0d5e59;
-            --btn-light: #1ea69e;
             --border-color: #d1e3e5;
             --border-hover: #127c76;
             
@@ -192,6 +192,7 @@
         .hero-buttons {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn-filled {
@@ -209,6 +210,23 @@
         .btn-filled:hover {
             background-color: var(--btn-filled-hover);
             border-color: var(--btn-filled-hover);
+        }
+
+        .btn-outlined {
+            background-color: transparent; 
+            color: var(--btn-filled); 
+            padding: 14px 32px; 
+            border: 2px solid var(--btn-filled); 
+            border-radius: 4px; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: var(--transition-smooth); 
+        }
+
+        .btn-outlined:hover {
+            background-color: var(--btn-filled);
+            color: #ffffff;
         }
 
         .hero-profile { 
@@ -262,9 +280,12 @@
             color: var(--text-muted); 
             margin-bottom: 60px; 
             font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Services Section (What I Do) */
+        /* Services Section */
         .services-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -332,11 +353,11 @@
             margin: 0;
         }
 
-        /* Strategic Partnerships Section - Structured Interactive Grid */
+        /* Strategic Partnerships Section */
         .partners-grid { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
-            gap: 4px; /* Micro-gap for flush, structured look */
+            gap: 4px; 
             background-color: transparent;
         }
 
@@ -353,32 +374,46 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease, filter 0.4s ease;
-            filter: grayscale(15%) brightness(0.9); /* Slightly desaturated default state */
+            filter: grayscale(15%) brightness(0.9); 
         }
 
         .partner-card-container:hover .partner-bg {
-            transform: scale(1.05); /* Subtle zoom */
+            transform: scale(1.05); 
             filter: grayscale(0%) brightness(1);
         }
 
         .partner-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(18, 124, 118, 0.85); /* Semi-transparent overlay */
+            background: rgba(18, 124, 118, 0.85); 
             backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px); /* Glassmorphism */
+            -webkit-backdrop-filter: blur(6px); 
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             padding: 40px 25px;
             opacity: 0;
             transition: opacity 0.3s ease;
             text-align: center;
         }
 
-        .partner-card-container:hover .partner-overlay {
-            opacity: 1;
+        /* Desktop Hover */
+        @media (min-width: 901px) {
+            .partner-card-container:hover .partner-overlay {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Tap to View Overlay */
+        @media (max-width: 900px) {
+            .partner-card-container.active .partner-overlay {
+                opacity: 1;
+            }
+            .partner-card-container.active .partner-bg {
+                transform: scale(1.05); 
+                filter: grayscale(0%) brightness(1);
+            }
         }
 
         .partner-logo { 
@@ -396,7 +431,25 @@
             font-weight: 400;
         }
 
-        /* Workflow Essentials (Tools) Section */
+        /* Equifax Full Width Banner */
+        .equifax-banner {
+            width: 100%;
+            height: 400px;
+            background-image: url('euifaX.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            position: relative;
+        }
+
+        .equifax-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 49, 54, 0.6); /* Dark overlay to keep it elegant */
+        }
+
+        /* Tools Section */
         .tools-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -463,16 +516,144 @@
             font-weight: 500;
         }
 
+        /* Recognition Section */
+        .recognition-section {
+            background-color: var(--bg-light-alt);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            min-height: 400px;
+        }
+
+        /* Contact Section */
+        .contact-form-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background-color: #fcfcfc;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--btn-filled);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(18, 124, 118, 0.1);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+        }
+
+        .direct-contact {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .direct-contact p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .mono-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            /* Monochromatic styling */
+            filter: grayscale(100%) opacity(0.6) brightness(0.5);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .mono-icon:hover {
+            filter: grayscale(100%) opacity(1) brightness(0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--text-dark);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .site-footer p {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* Back to Top Button */
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--btn-filled);
+            color: white;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: var(--transition-smooth);
+        }
+
+        #backToTopBtn:hover {
+            background-color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .hero-greeting { font-size: 3rem; white-space: normal; }
             .hero-title { font-size: 2.2rem; white-space: normal; }
-            
-            /* Visual Priority: Profile top, Content bottom */
             .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
             .hero-profile { order: -1; width: 100%; max-width: 500px; min-height: 400px; }
             .hero-content { order: 2; padding-bottom: 0; }
-            
             .hero-buttons { justify-content: center; }
         }
 
@@ -501,12 +682,15 @@
             .section-container { padding: 80px 20px; }
             .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
             .tools-grid { grid-template-columns: 1fr; }
+            .contact-form-wrapper { padding: 30px 20px; }
         }
         
         @media (max-width: 600px) {
             .partners-grid { grid-template-columns: 1fr; gap: 4px; }
             .hero-circle-bg { width: 320px; height: 320px; }
-            .hero-buttons { flex-direction: column; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn-filled, .btn-outlined { width: 100%; }
+            .equifax-banner { height: 250px; background-attachment: scroll; /* Disable parallax on small screens for performance */ }
         }
     </style>
 </head>
@@ -540,7 +724,8 @@
             <p class="hero-roles">Quotation Specialist | Account Manager | Inside Sales | Customer Service | Client Communication | Executive Assistant</p>
             
             <div class="hero-buttons">
-                <button class="btn-filled" onclick="window.location.href='#services'">Let's work together</button>
+                <button class="btn-filled" onclick="window.location.href='#contact'">Let's work together</button>
+                <button class="btn-outlined" onclick="window.open('cv.pdf', '_blank')">Download CV</button>
             </div>
         </div>
 
@@ -640,7 +825,7 @@
         <p class="section-subtitle">Collaborations built on reliability and results.</p>
         
         <div class="partners-grid">
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="ioPEX.jpeg" alt="iOPEX Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="iopex.png" alt="iOPEX" class="partner-logo">
@@ -648,7 +833,7 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="SSe.jpeg" alt="SSE Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="sse.png" alt="SSE" class="partner-logo">
@@ -656,7 +841,7 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="inchargE.jpeg" alt="InCharge Energy Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="incharge.png" alt="InCharge Energy" class="partner-logo">
@@ -664,15 +849,15 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
-                <img src="euifaX.jpeg" alt="Equifax Background" class="partner-bg">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
+                <img src="equifaX.jpeg" alt="Equifax Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="equifax.png" alt="Equifax" class="partner-logo">
                     <p class="partner-desc">Delivered comprehensive account support, including inbound inquiry resolution, credit analysis, and proactive service updates, while driving revenue through strategic subscription pitching.</p>
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="FoundEver.jpeg" alt="Foundever Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="foundever.png" alt="Foundever" class="partner-logo">
@@ -680,7 +865,7 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="Temuu.jpeg" alt="Temu Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="temu.png" alt="Temu" class="partner-logo">
@@ -688,7 +873,7 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="ovoEnergy.jpeg" alt="OVO Energy Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="ovo.png" alt="OVO Energy" class="partner-logo">
@@ -696,7 +881,7 @@
                 </div>
             </div>
             
-            <div class="partner-card-container">
+            <div class="partner-card-container" onclick="toggleMobileOverlay(this)">
                 <img src="Tdcx.jpeg" alt="TDCX Background" class="partner-bg">
                 <div class="partner-overlay">
                     <img src="tdcx.png" alt="TDCX" class="partner-logo">
@@ -705,6 +890,8 @@
             </div>
         </div>
     </section>
+
+    <section class="equifax-banner" aria-label="Equifax Featured Background"></section>
 
     <section id="tools" class="section-container">
         <h2 class="section-title">Workflow Essentials</h2>
@@ -800,11 +987,79 @@
         </div>
     </section>
 
+    <section id="accolades" class="section-container recognition-section">
+        <h2 class="section-title">Recognition</h2>
+        </section>
+
+    <section id="contact" class="section-container">
+        <h2 class="section-title">Initiate a Collaboration</h2>
+        <p class="section-subtitle">Whether you are looking to streamline operations, solve complex administrative challenges, or explore a strategic partnership, I am ready to help. Reach out below to start the conversation.</p>
+        
+        <div class="contact-form-wrapper">
+            <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault();">
+                <input type="text" class="form-input" placeholder="Name" required>
+                <input type="email" class="form-input" placeholder="Email" required>
+                <textarea class="form-input" placeholder="How can we collaborate?" required></textarea>
+                <button type="submit" class="btn-filled btn-submit">Send a message</button>
+            </form>
+
+            <div class="direct-contact">
+                <p>Or reach out directly:</p>
+                <div class="social-icons">
+                    <img src="gmail.png" alt="Email" class="mono-icon" title="Email">
+                    <img src="linkedin.png" alt="LinkedIn" class="mono-icon" title="LinkedIn">
+                    <img src="whatsapp.png" alt="WhatsApp" class="mono-icon" title="WhatsApp">
+                    <img src="facebook.png" alt="Facebook" class="mono-icon" title="Facebook">
+                    <img src="ig.png" alt="Instagram" class="mono-icon" title="Instagram">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>© 2026 Jhon Joshua Cacho • Administrative Professional</p>
+    </footer>
+
+    <button id="backToTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+
     <script>
         // Toggle mobile navigation menu
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
+        }
+
+        // Toggle strategic partnership overlay on mobile tap
+        function toggleMobileOverlay(element) {
+            // Only trigger JS behavior if window width is for mobile/tablet
+            if (window.innerWidth <= 900) {
+                // Remove active class from all others first (accordion-like behavior)
+                document.querySelectorAll('.partner-card-container').forEach(card => {
+                    if(card !== element) card.classList.remove('active');
+                });
+                // Toggle current element
+                element.classList.toggle('active');
+            }
+        }
+
+        // Back to Top Button Logic
+        let mybutton = document.getElementById("backToTopBtn");
+
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
